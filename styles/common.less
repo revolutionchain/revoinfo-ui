@@ -1,0 +1,70 @@
+@import 'variables.less';
+
+.break-word {
+  word-break: break-all;
+}
+
+.monospace {
+  font-family: monospace;
+}
+
+.button.is-revo {
+  border-color: transparent;
+  background-color: @revo;
+  color: white;
+
+  &:hover, .is-hovered {
+    background-color: darken(@revo, 3%);
+    color: white;
+  }
+
+  &:focus, .is-focused {
+    outline: none;
+    color: white;
+    &:not(:active) {
+      box-shadow: 0 0 0 0.125rem fade(@revo, 25%);
+    }
+  }
+
+  &:active, .is-actived {
+    outline: none;
+    background-color: darken(@revo, 5%);
+    color: white;
+  }
+
+  &.is-outlined {
+    border-color: @revo;
+    background-color: transparent;
+    color: @revo;
+    &:hover, .is-hovered {
+      border-color: @revo;
+      background-color: @revo;
+      color: white;
+    }
+  }
+
+  &.is-inverted {
+    background-color: white;
+    color: @revo;
+    &:hover, .is-hovered {
+      background-color: #f2f2f2;
+      color: white;
+    }
+  }
+
+  &.is-outlined.is-inverted {
+    border-color: white;
+    background-color: transparent;
+    color: white;
+    &:hover {
+      background-color: white;
+      color: @revo;
+    }
+  }
+
+  &[disabled] {
+    border-color: transparent;
+    background-color: @revo;
+    box-shadow: none;
+  }
+}
