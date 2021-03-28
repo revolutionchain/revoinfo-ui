@@ -18,7 +18,7 @@
             <AddressLink :address="address">{{ name }}</AddressLink>
           </td>
           <td class="monospace break-word">
-            {{ totalSupply | rvc20(decimals, true) }}
+            {{ totalSupply | erc20(decimals, true) }}
             {{ symbol || name || $t('contract.token.tokens') }}
           </td>
           <td>{{ transactions }}</td>

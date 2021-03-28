@@ -52,7 +52,7 @@
             id, blockHeight, timestamp,
             inputs, outputs, refundValue, fees,
             contractSpends,
-            rvc20TokenTransfers, rvc721TokenTransfers
+            erc20TokenTransfers, erc721TokenTransfers
           }"
           detailed
           @transaction-change="refresh" />
@@ -141,8 +141,8 @@
         timestamp: null,
         size: 0,
         contractSpends: [],
-        rvc20TokenTransfers: [],
-        rvc721TokenTransfers: [],
+        erc20TokenTransfers: [],
+        erc721TokenTransfers: [],
       }
     },
     async asyncData({req, params, error}) {
@@ -161,8 +161,8 @@
           timestamp: transaction.timestamp,
           size: transaction.size,
           contractSpends: transaction.contractSpends,
-          rvc20TokenTransfers: transaction.rvc20TokenTransfers,
-          rvc721TokenTransfers: transaction.rvc721TokenTransfers
+          erc20TokenTransfers: transaction.erc20TokenTransfers,
+          erc721TokenTransfers: transaction.erc721TokenTransfers
         }
       } catch (err) {
         if (err instanceof RequestError) {
@@ -196,8 +196,8 @@
         this.fees = transaction.fees
         this.refundValue = transaction.refundValue
         this.contractSpends = transaction.contractSpends
-        this.rvc20TokenTransfers = transaction.rvc20TokenTransfers
-        this.rvc721TokenTransfers = transaction.rvc721TokenTransfers
+        this.erc20TokenTransfers = transaction.erc20TokenTransfers
+        this.erc721TokenTransfers = transaction.erc721TokenTransfers
       },
       splitData(data) {
         let chunks = data.length / 64

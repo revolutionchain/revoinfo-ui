@@ -23,9 +23,9 @@ class Address {
 
   static getTokenBalanceTransactions(id, {token, page, pageSize}, options = {}) {
     if (token) {
-      return RevoinfoAPI.get(`/address/${id}/rvc20-balance-history/${token}`, {params: {page, pageSize}, ...options})
+      return RevoinfoAPI.get(`/address/${id}/erc20-balance-history/${token}`, {params: {page, pageSize}, ...options})
     } else {
-      return RevoinfoAPI.get(`/address/${id}/rvc20-balance-history`, {params: {page, pageSize}, ...options})
+      return RevoinfoAPI.get(`/address/${id}/erc20-balance-history`, {params: {page, pageSize}, ...options})
     }
   }
 }

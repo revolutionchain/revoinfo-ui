@@ -16,7 +16,7 @@ Vue.filter('revo', (satoshis, precision = null) => {
   }
 })
 
-Vue.filter('rvc20', (amount, decimals = 0, showDecimals = false) => {
+Vue.filter('erc20', (amount, decimals = 0, showDecimals = false) => {
   if (decimals === 0) {
     return amount
   }

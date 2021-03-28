@@ -62,7 +62,7 @@
           <div class="column info-title">{{ $t('address.token_balances') }}</div>
           <div class="column info-value">
             <div v-for="token in existingTokenBalances" class="monospace">
-              {{ token.balance | rvc20(token.decimals) }}
+              {{ token.balance | erc20(token.decimals) }}
               <AddressLink :address="token.address">
                 {{ token.symbol || $t('contract.token.tokens') }}
               </AddressLink>
@@ -93,7 +93,7 @@
             {{ $t('address.balance_changes') }}
           </nuxt-link>
         </li>
-        <li v-if="rvc20Balances.length"
+        <li v-if="erc20Balances.length"
           :class="{'is-active': $route.matched.some(route => route.name === 'address-id-token-balance')}">
           <nuxt-link :to="{name: 'address-id-token-balance', params: {id}}">
             {{ $t('address.token_balance_changes') }}
@@ -101,7 +101,7 @@
         </li>
       </ul>
     </div>
-    <nuxt-child :tokens="rvc20Balances.map(({address, name, symbol}) => ({address, name, symbol}))" />
+    <nuxt-child :tokens="erc20Balances.map(({address, name, symbol}) => ({address, name, symbol}))" />
   </section>
 </template>
 
@@ -127,7 +127,7 @@
         totalSent: '0',
         unconfirmed: '0',
         staking: '0',
-        rvc20Balances: [],
+        erc20Balances: [],
         ranking: 0,
         blocksMined: 0,
         transactionCount: 0
@@ -159,7 +159,7 @@
         return result
       },
       existingTokenBalances() {
-        return this.rvc20Balances.filter(token => token.balance !== '0')
+        return this.erc20Balances.filter(token => token.balance !== '0')
       },
       myAddresses() {
         return this.$store.state.address.myAddresses

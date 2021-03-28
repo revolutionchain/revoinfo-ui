@@ -89,8 +89,8 @@
         oldTransaction.refundValue = newTransaction.refundValue
         oldTransaction.fees = newTransaction.fees
         oldTransaction.contractSpends = newTransaction.contractSpends
-        oldTransaction.rvc20TokenTransfers = newTransaction.rvc20TokenTransfers
-        oldTransaction.rvc721TokenTransfers = newTransaction.rvc721TokenTransfers
+        oldTransaction.erc20TokenTransfers = newTransaction.erc20TokenTransfers
+        oldTransaction.erc721TokenTransfers = newTransaction.erc721TokenTransfers
       },
       subscribeAddress(address) {
         this.$subscribe('address/' + address, 'address/transaction', this._onTransaction)

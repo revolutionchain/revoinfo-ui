@@ -28,7 +28,7 @@
       }
     },
     props: {
-      rvc20: {required: true}
+      erc20: {required: true}
     },
     async asyncData({req, params, query, redirect, error}) {
       try {
@@ -86,8 +86,8 @@
         oldTransaction.refundValue = newTransaction.refundValue
         oldTransaction.fees = newTransaction.fees
         oldTransaction.contractSpends = newTransaction.contractSpends
-        oldTransaction.rvc20TokenTransfers = newTransaction.rvc20TokenTransfers
-        oldTransaction.rvc721TokenTransfers = newTransaction.rvc721TokenTransfers
+        oldTransaction.erc20TokenTransfers = newTransaction.erc20TokenTransfers
+        oldTransaction.erc721TokenTransfers = newTransaction.erc721TokenTransfers
       },
       subscribeTransactions() {
         this.$subscribe('address/' + this.id, 'address/transaction', this._onTransaction)

@@ -14,11 +14,11 @@ class Contract {
   }
 
   static listTokens({page, pageSize}, options = {}) {
-    return RevoinfoAPI.get(`/rvc20`, {params: {page, pageSize}, ...options})
+    return RevoinfoAPI.get(`/erc20`, {params: {page, pageSize}, ...options})
   }
 
   static richList(id, {page, pageSize}, options = {}) {
-    return RevoinfoAPI.get(`/rvc20/${id}/rich-list`, {params: {page, pageSize}, ...options})
+    return RevoinfoAPI.get(`/erc20/${id}/rich-list`, {params: {page, pageSize}, ...options})
   }
 }
 

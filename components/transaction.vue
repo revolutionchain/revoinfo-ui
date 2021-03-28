@@ -179,13 +179,13 @@
         </div>
       </div>
     </template>
-    <template v-for="({address, name, symbol, decimals, from, to, value}, index) in rvc20TokenTransfers">
+    <template v-for="({address, name, symbol, decimals, from, to, value}, index) in erc20TokenTransfers">
       <div class="column is-full flex-full"></div>
       <AttributeInjector
         class="column collapse token-transfer-list"
         :class="{
           'first-item': index === 0,
-          'last-item': index === rvc20TokenTransfers.length - 1
+          'last-item': index === erc20TokenTransfers.length - 1
         }">
         <div class="is-clearfix">
           <AddressLink v-if="from" :address="from" class="is-pulled-left" :highlight="highlightAddress" />
@@ -196,7 +196,7 @@
           <div v-if="to" class="is-clearfix">
             <AddressLink :address="to" class="is-pulled-left" :highlight="highlightAddress" />
             <span class="is-pulled-right amount break-word">
-              {{ value | rvc20(decimals) }}
+              {{ value | erc20(decimals) }}
               <AddressLink :address="address" :highlight="highlightAddress">
                 {{ symbol || name || $t('contract.token.tokens') }}
               </AddressLink>
@@ -206,13 +206,13 @@
         </div>
       </AttributeInjector>
     </template>
-    <template v-for="({address, name, symbol, from, to, tokenId}, index) in rvc721TokenTransfers">
+    <template v-for="({address, name, symbol, from, to, tokenId}, index) in erc721TokenTransfers">
       <div class="column is-full flex-full"></div>
       <AttributeInjector
         class="column collapse token-transfer-list"
         :class="{
           'first-item': index === 0,
-          'last-item': index === rvc721TokenTransfers.length - 1
+          'last-item': index === erc721TokenTransfers.length - 1
         }">
         <div class="is-clearfix">
           <AddressLink v-if="from" :address="from" class="is-pulled-left" :highlight="highlightAddress" />
@@ -286,11 +286,11 @@
       contractSpends() {
         return this.transaction.contractSpends
       },
-      rvc20TokenTransfers() {
-        return this.transaction.rvc20TokenTransfers
+      erc20TokenTransfers() {
+        return this.transaction.erc20TokenTransfers
       },
-      rvc721TokenTransfers() {
-        return this.transaction.rvc721TokenTransfers
+      erc721TokenTransfers() {
+        return this.transaction.erc721TokenTransfers
       },
       contractInfo() {
         return this.outputs.map(output => {

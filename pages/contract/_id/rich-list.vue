@@ -17,9 +17,9 @@
               <AddressLink :address="address" />
             </td>
             <td class="monospace break-word">
-              {{ balance | rvc20(rvc20.decimals) }} {{ rvc20.symbol }}
+              {{ balance | erc20(erc20.decimals) }} {{ erc20.symbol }}
             </td>
-            <td class="monospace">{{ (Number(balance) / Number(rvc20.totalSupply) * 100).toFixed(4) + '%' }}</td>
+            <td class="monospace">{{ (Number(balance) / Number(erc20.totalSupply) * 100).toFixed(4) + '%' }}</td>
           </tr>
         </tbody>
       </table>
@@ -42,7 +42,7 @@
       }
     },
     props: {
-      rvc20: {required: true}
+      erc20: {required: true}
     },
     async asyncData({req, params, query, redirect, error}) {
       try {

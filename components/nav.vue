@@ -77,8 +77,8 @@
             this.$router.push(`/block/${searchString}`)
             break
           case 'contract':
-          case 'rvc20':
-          case 'rvc721':
+          case 'erc20':
+          case 'erc721':
             this.searchString = ''
             if (address) {
               this.$router.push(`/contract/${address}`)
