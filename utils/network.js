@@ -1,10 +1,10 @@
 export default {
   mainnet: {
-    pubkey: 0x3a,
-    pubkeyhash: 0x3a,
+    pubkey: 0x3c,
+    pubkeyhash: 0x80,
     scripthash: 0x32,
-    witness_v0_keyhash: 'qc',
-    witness_v0_scripthash: 'qc'
+    witness_v0_keyhash: 'rv',
+    witness_v0_scripthash: 'rv'
   },
   testnet: {
     pubkey: 0x78,
