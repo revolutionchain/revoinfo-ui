@@ -4,6 +4,9 @@
       <h3 class="is-size-4 is-uppercase">{{ $t('footer.contact_us') }}</h3>
       <div class="line"></div>
       <a href="mailto:info@revolutionchain.it">info@revolutionchain.it</a>
+      
+<!--
+
       <ul class="links">
         <li>
           <a target="_blank" href="https://www.facebook.com/revolutionchain/">
@@ -26,6 +29,9 @@
           </a>
         </li>
       </ul>
+
+-->
+
       <div class="copyright">
         2017 - 2021 REVO &copy; All rights Reserved
       </div>
