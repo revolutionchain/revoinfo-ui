@@ -2,7 +2,9 @@
   <nav class="navbar">
     <div class="navbar-brand is-size-4">
       <nuxt-link to="/" class="navbar-item navbar-logo">
-        <span class="revo-icon revo-icon--revo" /> revo.info
+        <span class="revo-icon">
+          <img src="@/icons/logo.png" />
+        </span> revo.info
       </nuxt-link>
       <button type="button" class="button navbar-burger" @click="showMenu = !showMenu">
         <span></span><span></span><span></span>
