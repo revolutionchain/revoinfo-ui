@@ -4,7 +4,7 @@
       <nuxt-link to="/" class="navbar-item navbar-logo">
         <span class="revo-icon">
           <img src="@/icons/logo.png" />
-        </span> revo.info
+        </span> <span style="color:green">betachain</span>
       </nuxt-link>
       <button type="button" class="button navbar-burger" @click="showMenu = !showMenu">
         <span></span><span></span><span></span>
