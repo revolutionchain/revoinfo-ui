@@ -1,25 +1,25 @@
 <template>
   <div id="app">
-    <!-- // https://vue-particles.netlify.app/ -->
-    <vue-particles
-      class="particles-js"
-      color="#ffffff"
-      :particleOpacity="0.15"
-      :particlesNumber="90"
-      shapeType="circle"
-      :particleSize="5"
-      linesColor="#ffffff"
-      :linesWidth="1"
-      :lineLinked="true"
-      :lineOpacity="0.1"
-      :linesDistance="150"
-      :moveSpeed="1"
-      :hoverEffect="true"
-      hoverMode="grab"
-      :clickEffect="true"
-      clickMode="bubble"
-    >
-    </vue-particles>
+    <client-only>
+      <vue-particles
+        class="particles-js"
+        color="#ffffff"
+        :particleOpacity="0.15"
+        :particlesNumber="90"
+        shapeType="circle"
+        :particleSize="5"
+        linesColor="#ffffff"
+        :linesWidth="1"
+        :lineLinked="true"
+        :lineOpacity="0.1"
+        :linesDistance="150"
+        :moveSpeed="1"
+        :hoverEffect="true"
+        hoverMode="grab"
+        :clickEffect="true"
+        clickMode="bubble"
+      />
+    </client-only>
     <div>
       <header class="container">
         <Navigator />
@@ -41,7 +41,6 @@
   import Breadcrumb from '@/components/breadcrumb/index.vue'
   import Footer from '@/components/footer.vue'
   import MyAddresses from '@/components/my-addresses.vue'
-  // import VueParticles from 'vue-particles'
 
   export default {
     head() {
@@ -61,7 +60,6 @@
       if (window.Notification) {
         Notification.requestPermission()
       }
-      document.getElementsByClassName('particles-js')[0].style.height = document.getElementById('app').offsetHeight+'px'
     },
     components: {Navigator, Breadcrumb, Footer, MyAddresses}
   }
