@@ -61,8 +61,7 @@
       if (window.Notification) {
         Notification.requestPermission()
       }
-      // console.log(document.getElementById('app').offsetHeight)
-      // document.getElementsByClassName('particles-js')[0].style.height = document.getElementById('app').offsetHeight+'px'
+      document.getElementsByClassName('particles-js')[0].style.height = document.getElementById('app').offsetHeight+'px'
     },
     components: {Navigator, Breadcrumb, Footer, MyAddresses}
   }

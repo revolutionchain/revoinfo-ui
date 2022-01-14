@@ -50,6 +50,7 @@ export default {
     '~/plugins/components.js',
     '~/plugins/i18n.js',
     '~/plugins/revo-utils.js',
-    {src: '~/plugins/websocket.js', ssr: false}
+    {src: '~/plugins/websocket.js', ssr: false},
+    {src: '~/plugins/vue-particles', mode: 'client' },
   ]
 }
