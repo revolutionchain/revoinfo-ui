@@ -114,6 +114,7 @@
     .navbar-item {
       flex: auto;
       position: relative;
+      left: -15px;
       input {
         padding-right: 3em;
       }

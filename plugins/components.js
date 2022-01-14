@@ -7,6 +7,7 @@ import BlockLink from '@/components/links/block'
 import TransactionLink from '@/components/links/transaction'
 import Pagination from '@/components/pagination.vue'
 import Transaction from '@/components/transaction.vue'
+import VueParticles from 'vue-particles'
 
 Vue.component('AttributeInjector', AttributeInjector)
 Vue.component('Icon', Icon)
@@ -16,3 +17,4 @@ Vue.component('BlockLink', BlockLink)
 Vue.component('TransactionLink', TransactionLink)
 Vue.component('Pagination', Pagination)
 Vue.component('Transaction', Transaction)
+Vue.use(VueParticles)

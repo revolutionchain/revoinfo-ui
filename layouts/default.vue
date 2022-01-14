@@ -1,5 +1,25 @@
 <template>
   <div id="app">
+    <!-- // https://vue-particles.netlify.app/ -->
+    <vue-particles
+      class="particles-js"
+      color="#ffffff"
+      :particleOpacity="0.15"
+      :particlesNumber="90"
+      shapeType="circle"
+      :particleSize="5"
+      linesColor="#ffffff"
+      :linesWidth="1"
+      :lineLinked="true"
+      :lineOpacity="0.1"
+      :linesDistance="150"
+      :moveSpeed="1"
+      :hoverEffect="true"
+      hoverMode="grab"
+      :clickEffect="true"
+      clickMode="bubble"
+    >
+    </vue-particles>
     <div>
       <header class="container">
         <Navigator />
@@ -21,6 +41,7 @@
   import Breadcrumb from '@/components/breadcrumb/index.vue'
   import Footer from '@/components/footer.vue'
   import MyAddresses from '@/components/my-addresses.vue'
+  // import VueParticles from 'vue-particles'
 
   export default {
     head() {
@@ -40,6 +61,8 @@
       if (window.Notification) {
         Notification.requestPermission()
       }
+      // console.log(document.getElementById('app').offsetHeight)
+      // document.getElementsByClassName('particles-js')[0].style.height = document.getElementById('app').offsetHeight+'px'
     },
     components: {Navigator, Breadcrumb, Footer, MyAddresses}
   }
@@ -51,11 +74,21 @@
     flex-direction: column;
     min-height: 100vh;
   }
+  .particles-js {
+    background-image: url(./hero-dark-2.jpg);
+    background-size: cover;
+    background-repeat: repeat-y;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
   .background {
     position: relative;
     flex: 1;
     padding: 0.5rem 0 1rem;
-    background-color: #f5f6f8;
+    background-color: transparent;
   }
   .my-addresses {
     position: fixed;
@@ -68,5 +101,22 @@
       bottom: 2em;
       right: 2em;
     }
+  }
+</style>
+
+<!-- NOT SCOPED STYLE: insert here global overrides -->
+<style lang="less">
+  a, .breadcrumb a {
+    color: #00b712;
+  }
+  .card, .navbar, .chart-wrapper {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+  .tabs li.is-active a {
+    color: #00b712;
+    border-bottom-color: #00b712;
+  }
+  .tabs a {
+    color: white;
   }
 </style>
