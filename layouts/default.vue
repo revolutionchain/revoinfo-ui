@@ -72,7 +72,7 @@
     min-height: 100vh;
   }
   .particles-js {
-    background-image: url(./hero-dark-2.jpg);
+    background-image: url(./images/nebula.png);
     background-size: cover;
     background-repeat: repeat-y;
     position: absolute;
