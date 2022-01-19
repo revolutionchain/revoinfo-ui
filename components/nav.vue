@@ -3,8 +3,8 @@
     <div class="navbar-brand is-size-4">
       <nuxt-link to="/" class="navbar-item navbar-logo">
         <span class="revo-icon">
-          <img src="@/icons/logo.png" />
-        </span> <span style="color:#00b712;">betachain</span>
+          <img src="@/icons/revo-light.svg" />
+        </span>
       </nuxt-link>
       <button type="button" class="button navbar-burger" @click="showMenu = !showMenu">
         <span></span><span></span><span></span>
@@ -40,9 +40,9 @@
       <form class="navbar-end" @submit.prevent="search">
         <div class="navbar-item input-item">
           <input type="text" class="input" v-model="searchString" :placeholder="$t('nav.search')">
-          <button type="submit" class="button is-revo" :class="{'is-loading': searching}">
+          <!-- <button type="submit" class="button is-revo" :class="{'is-loading': searching}">
             <Icon icon="search" />
-          </button>
+          </button> -->
         </div>
       </form>
     </div>
@@ -102,19 +102,57 @@
 </script>
 
 <style lang="less" scoped>
+  .navbar {
+    background-color: transparent;
+    .navbar-item.has-dropdown:hover .navbar-link {
+      background-color: transparent;
+    }
+    a.navbar-item, a.navbar-link {
+      color: rgba(255, 255, 255, 0.8);
+      text-transform: capitalize;
+      border-bottom: 4px solid transparent;
+      transition: border-bottom 0.1s linear;
+      &:hover {
+        background-color: transparent;
+        border-bottom: 4px solid rgba(255, 255, 255, 0.8);
+      }
+    }
+    .navbar-dropdown {
+      background: rgba(0,0,0,0.87);
+      width: 160px;
+    }
+    .navbar-link::after {
+      border-color: rgba(255, 255, 255, 0.8);
+    }
+    .navbar-menu {
+      flex-direction: column;
+    }
+  }
   .navbar-logo {
     display: inline-block;
     .revo-icon {
       vertical-align: middle;
+      img {
+        height: 50px;
+        width: auto;
+      }
     }
+  }
+
+  .navbar-start {
+    margin-right: 50px;
+    margin-top: 10px;
+    justify-content: flex-end;
   }
   .navbar-end {
     flex: auto;
     align-items: center;
+    margin-left: initial;
+    margin-top: 100px;
     .navbar-item {
       flex: auto;
       position: relative;
-      left: -15px;
+      left: -50px;
       input {
         padding-right: 3em;
       }

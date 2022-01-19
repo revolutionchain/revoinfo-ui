@@ -1,30 +1,8 @@
 <template>
   <div id="app">
-    <client-only>
-      <vue-particles
-        class="particles-js"
-        color="#ffffff"
-        :particleOpacity="0.15"
-        :particlesNumber="90"
-        shapeType="circle"
-        :particleSize="5"
-        linesColor="#ffffff"
-        :linesWidth="1"
-        :lineLinked="true"
-        :lineOpacity="0.1"
-        :linesDistance="150"
-        :moveSpeed="1"
-        :hoverEffect="true"
-        hoverMode="grab"
-        :clickEffect="true"
-        clickMode="bubble"
-      />
-    </client-only>
-    <div>
-      <header class="container">
-        <Navigator />
-      </header>
-    </div>
+    <section class="nebula-section pa-cta-v2">
+      <Navigator />
+    </section>
     <div class="background">
       <div class="container">
         <Breadcrumb v-if="$route.path !== '/'" />
@@ -71,21 +49,19 @@
     flex-direction: column;
     min-height: 100vh;
   }
-  .particles-js {
+  .nebula-section {
     background-image: url(./images/nebula.png);
+    background-repeat: no-repeat;
     background-size: cover;
-    background-repeat: repeat-y;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    background-position: center;
+    color: white;
+    height: 400px;
   }
   .background {
     position: relative;
     flex: 1;
     padding: 0.5rem 0 1rem;
-    background-color: transparent;
+    background-color: #101C26;
   }
   .my-addresses {
     position: fixed;
@@ -103,17 +79,17 @@
 
 <!-- NOT SCOPED STYLE: insert here global overrides -->
 <style lang="less">
+  body {
+    font-family: 'Blinker', sans-serif;
+  }
   a, .breadcrumb a {
     color: #00b712;
   }
-  .card, .navbar, .chart-wrapper {
+  .chart-wrapper {
     background-color: rgba(255, 255, 255, 0.9);
   }
   .tabs li.is-active a {
     color: #00b712;
     border-bottom-color: #00b712;
-  }
-  .tabs a {
-    color: white;
   }
 </style>

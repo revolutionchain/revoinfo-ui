@@ -23,9 +23,6 @@
   },
   "homepage": "https://github.com/revolutionchain/revoinfo-ui#readme",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.36",
-    "@fortawesome/free-solid-svg-icons": "^5.15.4",
-    "@fortawesome/vue-fontawesome": "^2.0.6",
     "axios": "^0.21.1",
     "bn.js": "^5.0.0",
     "bs58": "^4.0.1",
@@ -33,11 +30,10 @@
     "crypto-browserify": "^3.12.0",
     "moment": "^2.24.0",
     "nuxt": "^2.15.8",
-    "vue-i18n": "^8.14.1",
-    "vue-particles": "^1.0.9"
+    "vue-i18n": "^8.14.1"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.11.1",
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "bulma": "^0.7.5",
     "echarts": "^4.3.0",
     "less": "^3.10.3",

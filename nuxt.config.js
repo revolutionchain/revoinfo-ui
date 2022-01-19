@@ -11,7 +11,6 @@ export default {
   css: [
     'bulma/css/bulma.css',
     '@fortawesome/fontawesome-free/css/all.css',
-    '@fortawesome/fontawesome-svg-core/styles.css',
     '@/styles/common.less',
     '@/styles/card.less',
     '@/styles/info-table.less',
@@ -51,8 +50,6 @@ export default {
     '~/plugins/components.js',
     '~/plugins/i18n.js',
     '~/plugins/revo-utils.js',
-    '~/plugins/fontawesome.js',
     {src: '~/plugins/websocket.js', ssr: false},
-    {src: '~/plugins/vue-particles.js', mode: 'client' },
   ]
 }
