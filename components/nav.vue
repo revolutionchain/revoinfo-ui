@@ -107,7 +107,7 @@
     .navbar-item.has-dropdown:hover .navbar-link {
       background-color: transparent;
     }
-    a.navbar-item, a.navbar-link {
+    a.navbar-item:not(.navbar-logo) {
       color: rgba(255, 255, 255, 0.8);
       text-transform: capitalize;
       border-bottom: 4px solid transparent;
@@ -116,6 +116,10 @@
         background-color: transparent;
         border-bottom: 4px solid rgba(255, 255, 255, 0.8);
       }
+    }
+    a.navbar-link {
+      color: rgba(255, 255, 255, 0.8);
+      text-transform: capitalize;
     }
     .navbar-dropdown {
       background: rgba(0,0,0,0.87);
