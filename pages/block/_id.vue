@@ -3,41 +3,41 @@
     <div class="card section-card">
       <div class="card-header">
         <div class="card-header-icon">
-          <Icon icon="cubes" fixedWidth />
+          <Icon icon="cube" fixedWidth />
         </div>
         <h3 class="card-header-title">{{ $t('block.summary') }}</h3>
       </div>
       <div class="card-body info-table">
         <div class="columns">
-          <div class="column info-title">{{ $t('block.block_height') }}</div>
+          <div class="column info-title"><Icon icon="cube" fixedWidth /> {{ $t('block.block_height') }}</div>
           <div class="column info-value">{{ height }}</div>
         </div>
         <div class="columns">
-          <div class="column info-title">{{ $t('block.block_hash') }}</div>
+          <div class="column info-title"><Icon icon="fas hashtag" fixedWidth /> {{ $t('block.block_hash') }}</div>
           <div class="column info-value">
             <BlockLink :block="hash" plain />
           </div>
         </div>
         <div class="columns">
-          <div class="column info-title">{{ $t('block.block_size') }}</div>
+          <div class="column info-title"><Icon icon="fas weight-hanging" fixedWidth /> {{ $t('block.block_size') }}</div>
           <div class="column info-value">{{ size.toLocaleString() }} {{ $t('block.bytes') }}</div>
         </div>
         <div class="columns">
-          <div class="column info-title">{{ $t('block.block_weight') }}</div>
+          <div class="column info-title"><Icon icon="fas weight-hanging" fixedWidth /> {{ $t('block.block_weight') }}</div>
           <div class="column info-value">{{ weight.toLocaleString() }} {{ $t('block.bytes') }}</div>
         </div>
         <div class="columns">
-          <div class="column info-title">{{ $t('block.timestamp') }}</div>
+          <div class="column info-title"><Icon icon="fas clock" fixedWidth /> {{ $t('block.timestamp') }}</div>
           <div class="column info-value">
             <FromNow :timestamp="timestamp" /> ({{ timestamp | timestamp }})
           </div>
         </div>
         <div class="columns">
-          <div class="column info-title">{{ $t('block.block_reward') }}</div>
+          <div class="column info-title"><Icon icon="fas coins" fixedWidth /> {{ $t('block.block_reward') }}</div>
           <div class="column info-value monospace">{{ reward | revo }} RVO</div>
         </div>
         <div class="columns">
-          <div class="column info-title">{{ $t('block.difficulty') }}</div>
+          <div class="column info-title"><Icon icon="fas compass" fixedWidth /> {{ $t('block.difficulty') }}</div>
           <div class="column info-value">{{ difficulty }}</div>
         </div>
         <div class="columns">
@@ -45,17 +45,17 @@
           <div class="column info-value monospace">{{ merkleRoot }}</div>
         </div>
         <div class="columns" v-if="miner">
-          <div class="column info-title">{{ $t('block.mined_by') }}</div>
+          <div class="column info-title"><Icon icon="fas meteor" fixedWidth />{{ $t('block.mined_by') }}</div>
           <div class="column info-value">
             <AddressLink :address="miner" />
           </div>
         </div>
         <div class="columns">
-          <div class="column info-title">{{ $t('block.transactions') }}</div>
+          <div class="column info-title"><Icon icon="fas list-ul" fixedWidth /> {{ $t('block.transactions') }}</div>
           <div class="column info-value">{{ tx.length }}</div>
         </div>
         <div class="columns" v-if="prevHash && prevHash != '0'.repeat(64)">
-          <div class="column info-title">{{ $t('block.previous_block') }}</div>
+          <div class="column info-title"><Icon icon="fas caret-left" fixedWidth /><Icon icon="cube" fixedWidth /> {{ $t('block.previous_block') }}</div>
           <div class="column info-value">
             <BlockLink :block="height - 1" :clipboard="prevHash">
               {{ prevHash }}
@@ -63,7 +63,7 @@
           </div>
         </div>
         <div class="columns" v-if="nextHash">
-          <div class="column info-title">{{ $t('block.next_block') }}</div>
+          <div class="column info-title"><Icon icon="cube" fixedWidth /> {{ $t('block.next_block') }} <Icon icon="fas caret-right" fixedWidth /></div>
           <div class="column info-value">
             <BlockLink :block="height + 1" :clipboard="nextHash">
               {{ nextHash }}
