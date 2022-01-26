@@ -120,7 +120,7 @@
             </div>
             <div class="card-body">
               <p class="information">
-                <span class="value">0.00000001</span>
+                <span class="value">0.00000001 RVO/Unit</span>
               </p>
             </div>
           </div>
