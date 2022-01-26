@@ -37,6 +37,80 @@
           </div>
         </AttributeInjector>
       </div>
+
+      <h1 class="nebula-title">
+        Beta - Revo Block Explorer
+      </h1>
+      <p class="nebula-p">
+        You may enter a block height, block hash, tx hash, contract or address
+      </p>
+
+      <section class="columns is-multiline is-desktop">
+        <div class="column">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-header-title">
+                <Icon icon="database" fixedWidth />
+                {{ $t('blockchain.blockchain_height') }}
+              </h3>
+            </div>
+            <div class="card-body">
+              <p class="information">
+                <span class="value">{{ blockchain.height.toLocaleString() }}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-header-title">
+                <Icon icon="compass" fixedWidth />
+                {{ $t('blockchain.current_difficulty') }}
+              </h3>
+            </div>
+            <div class="card-body">
+              <p class="information">
+                <span class="value">{{ difficulty.toLocaleString() }}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-header-title">
+                <Icon icon="balance-scale" fixedWidth />
+                {{ $t('blockchain.network_weight') }}
+              </h3>
+            </div>
+            <div class="card-body">
+              <p class="information">
+                <span class="value">{{ stakeWeight | revo(8) }}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-header-title">
+                <Icon icon="gas-pump" fixedWidth />
+                {{ $t('blockchain.fee_rate') }}
+              </h3>
+            </div>
+            <div class="card-body">
+              <p class="information">
+                <span class="value">{{ feeRate }} RVO/kB</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <form class="navbar-end" @submit.prevent="search">
         <div class="navbar-item input-item">
           <input type="text" class="input" v-model="searchString" :placeholder="$t('nav.search')">
@@ -51,16 +125,32 @@
 
 <script>
   import {get as revoinfoGet} from '@/services/revoinfo-api'
+  import Block from "@/models/block"
+  import Misc from '@/models/misc'
 
   export default {
     data() {
       return {
         showMenu: false,
         searchString: '',
-        searching: false
+        searching: false,
+        difficulty: 0,
+        stakeWeight: 0,
+        feeRate: 0
+      }
+    },
+    computed: {
+      blockchain() {
+        return this.$store.state.blockchain
       }
     },
     methods: {
+      onStakeWeight(stakeWeight) {
+        this.stakeWeight = stakeWeight
+      },
+      onFeeRate(feeRate) {
+        this.feeRate = feeRate
+      },
       async search() {
         let searchString = this.searchString.trim()
         if (!searchString || this.searching) {
@@ -97,13 +187,64 @@
         this.showMenu = false
         this.searching = false
       }
+    },
+    watch: {
+      async 'blockchain.height'(height) {
+        let block = await Block.get(height)
+        this.difficulty = block.difficulty
+      }
+    },
+    async mounted() {
+      let [currentBlock, {netStakeWeight: stakeWeight, feeRate}] = await Promise.all([
+        Block.get(this.$store.state.blockchain.height),
+        Misc.info()
+      ])
+      this.difficulty = currentBlock.difficulty;
+      this.stakeWeight = stakeWeight;
+      this.feeRate = feeRate;
+      this._onStakeWeight = this.onStakeWeight.bind(this)
+      this._onFeeRate = this.onFeeRate.bind(this)
+      this.$subscribe('blockchain', 'stakeweight', this._onStakeWeight)
+      this.$subscribe('blockchain', 'feerate', this._onFeeRate)
+    },
+    beforeDestroy() {
+      this.$unsubscribe('blockchain', 'stakeweight', this._onStakeWeight)
+      this.$unsubscribe('blockchain', 'feerate', this._onFeeRate)
     }
   }
 </script>
 
 <style lang="less" scoped>
+  .card-header-title {
+    padding: 0.75rem 0;
+    justify-content: center;
+    span {
+      margin-right: 6px;
+    }
+  }
+  .information {
+    padding: 0.1em 1em;
+    text-align: center;
+    &:first-child {
+      padding-top: 0.5em;
+    }
+    &:last-child {
+      padding-bottom: 0.5em;
+    }
+    .value {
+      font-family: monospace
+    }
+  }
+
+  .columns.is-desktop {
+    padding: 0 350px;
+  }
+
   .navbar {
     background-color: transparent;
+    .navbar-brand {
+      position: absolute;
+    }
     .navbar-item.has-dropdown:hover .navbar-link {
       background-color: transparent;
     }
@@ -120,6 +261,7 @@
     a.navbar-link {
       color: rgba(255, 255, 255, 0.8);
       text-transform: capitalize;
+      border-bottom: 4px solid transparent;
     }
     .navbar-dropdown {
       background: rgba(0,0,0,0.87);
@@ -129,6 +271,7 @@
       border-color: rgba(255, 255, 255, 0.8);
     }
     .navbar-menu {
+      padding: 0 10px;
       flex-direction: column;
     }
   }
@@ -143,6 +286,26 @@
     }
   }
 
+  h1.nebula-title {
+    margin-top: 80px;
+    margin-bottom: 10px;
+    font-size: 51px;
+    text-align: center;
+    font-weight: 200;
+    line-height: 53px;
+    strong {
+      color: white;
+    }
+  }
+
+  p.nebula-p {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-weight: 200;
+    font-size: 17px;
+  }
+
   .navbar-start {
     margin-right: 50px;
     margin-top: 10px;
@@ -152,13 +315,14 @@
     flex: auto;
     align-items: center;
     margin-left: initial;
-    margin-top: 100px;
     .navbar-item {
       flex: auto;
       position: relative;
-      left: -50px;
       input {
         padding-right: 3em;
+        width: 50%;
+        margin: 0 auto;
+        text-align: center;
       }
       button {
         position: absolute;

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <section class="nebula-section pa-cta-v2">
+    <section class="nebula-section">
       <Navigator />
     </section>
     <div class="background">
@@ -55,7 +55,7 @@
     background-size: cover;
     background-position: center;
     color: white;
-    height: 400px;
+    height: 450px;
   }
   .background {
     position: relative;

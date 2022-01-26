@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <section class="columns is-multiline is-desktop">
+    <!-- <section class="columns is-multiline is-desktop">
       <div class="column">
         <div class="card">
           <div class="card-header">
@@ -31,8 +31,7 @@
           </div>
         </div>
       </div>
-    </section>
-
+    </section> -->
     <section class="columns is-multiline is-desktop">
       <div class="column is-half">
         <div class="card">
@@ -53,8 +52,12 @@
                 <div class="level-left">
                   <nuxt-link :to="{name: 'block-id', params: {id: block.height}}"
                     class="level-item revo-block-box has-text-centered">
-                    {{ $tc('blockchain.block', 1) }} #{{ block.height }}
-                    <FromNow :timestamp="block.timestamp" />
+                    <div class="revo-block-box-text">
+                      <Icon icon="cube" fixedWidth />{{ $tc('blockchain.block', 1) }} #{{ block.height }}
+                    </div>
+                    <div class="revo-block-box-text">
+                      <Icon icon="clock" fixedWidth /><FromNow :timestamp="block.timestamp" />
+                    </div>
                   </nuxt-link>
                   <div class="level-item">
                     <div>
