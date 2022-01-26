@@ -3,7 +3,7 @@
     <div class="navbar-brand is-size-4">
       <nuxt-link to="/" class="navbar-item navbar-logo">
         <span class="revo-icon">
-          <<img src="@/icons/revo-light.svg" />
+          <img src="@/icons/revo-light.svg" />
         </span>
       </nuxt-link>
       <button type="button" class="button navbar-burger" @click="showMenu = !showMenu">
