@@ -9,19 +9,19 @@
       </div>
       <div class="card-body info-table">
         <div class="columns">
-          <div class="column info-title">{{ $t('transaction.transaction_id') }}</div>
+          <div class="column info-title"><Icon icon="fas info" fixedWidth /> {{ $t('transaction.transaction_id') }}</div>
           <div class="column info-value monospace">
             <TransactionLink :transaction="id" plain />
           </div>
         </div>
         <div class="columns" v-if="id !== hash">
-          <div class="column info-title">{{ $t('transaction.transaction_hash') }}</div>
+          <div class="column info-title"><Icon icon="fas hashtag" fixedWidth /> {{ $t('transaction.transaction_hash') }}</div>
           <div class="column info-value monospace">
             <TransactionLink :transaction="id" plain :clipboard="hash">{{ hash }}</TransactionLink>
           </div>
         </div>
         <div class="columns" v-if="blockHash">
-          <div class="column info-title">{{ $t('transaction.included_in_block') }}</div>
+          <div class="column info-title"><Icon icon="cube" fixedWidth /> {{ $t('transaction.included_in_block') }}</div>
           <div class="column info-value">
             <BlockLink :block="blockHeight" :clipboard="blockHash">
               {{ blockHeight }} ({{ blockHash }})
@@ -29,21 +29,21 @@
           </div>
         </div>
         <div class="columns">
-          <div class="column info-title">{{ $t('transaction.transaction_size') }}</div>
+          <div class="column info-title"><Icon icon="fas weight-hanging" fixedWidth />{{ $t('transaction.transaction_size') }}</div>
           <div class="column info-value">{{ size.toLocaleString() }} bytes</div>
         </div>
         <div class="columns" v-if="timestamp">
-          <div class="column info-title">{{ $t('transaction.timestamp') }}</div>
+          <div class="column info-title"><Icon icon="fas clock" fixedWidth /> {{ $t('transaction.timestamp') }}</div>
           <div class="column info-value">
             <FromNow :timestamp="timestamp" /> ({{ timestamp | timestamp }})
           </div>
         </div>
         <div class="columns">
-          <div class="column info-title">{{ $t('transaction.confirmation') }}</div>
+          <div class="column info-title"><Icon icon="fas check" fixedWidth /> {{ $t('transaction.confirmation') }}</div>
           <div class="column info-value">{{ confirmations }}</div>
         </div>
         <div class="columns" v-if="fees > 0">
-          <div class="column info-title">{{ $t('transaction.transaction_fee') }}</div>
+          <div class="column info-title"><Icon icon="fas coins" fixedWidth /> {{ $t('transaction.transaction_fee') }}</div>
           <div class="column info-value monospace">{{ fees | revo }} RVO</div>
         </div>
 
@@ -61,27 +61,27 @@
           <div class="column">
             <div v-for="receipt in receipts" class="receipt-item">
               <div class="columns">
-                <div class="column info-title">{{ $t('transaction.receipt.sender') }}</div>
+                <div class="column info-title"><Icon icon="fas user-shield" fixedWidth /> {{ $t('transaction.receipt.sender') }}</div>
                 <div class="column info-value">
                   <AddressLink :address="receipt.sender" />
                 </div>
               </div>
               <div class="columns" v-if="receipt.contractAddressHex !== '0'.repeat(40)">
-                <div class="column info-title">{{ $t('transaction.receipt.contract_address') }}</div>
+                <div class="column info-title"><Icon icon="fas file-contract" fixedWidth /> {{ $t('transaction.receipt.contract_address') }}</div>
                 <div class="column info-value">
                   <AddressLink :address="receipt.contractAddress" />
                 </div>
               </div>
               <div class="columns" v-if="receipt.gasUsed !== 0">
-                <div class="column info-title">{{ $t('transaction.receipt.gas_used') }}</div>
+                <div class="column info-title"><Icon icon="fas tint" fixedWidth /> {{ $t('transaction.receipt.gas_used') }}</div>
                 <div class="column info-value monospace">{{ receipt.gasUsed.toLocaleString() }}</div>
               </div>
               <div class="columns" v-if="receipt.excepted && receipt.excepted !== 'None'">
-                <div class="column info-title">{{ $t('transaction.receipt.excepted') }}</div>
-                <div class="column info-value">{{ receipt.exceptedMessage || receipt.excepted }}</div>
+                <div class="column info-title"><Icon icon="fas fa-exclamation" fixedWidth /> {{ $t('transaction.receipt.excepted') }}</div>
+                <div class="column info-value"><Icon icon="fas fa-times" fixedWidth /> {{ receipt.exceptedMessage || receipt.excepted }}</div>
               </div>
               <div class="columns" v-if="receipt.logs.length">
-                <div class="column info-title">{{ $t('transaction.receipt.event_logs') }}</div>
+                <div class="column info-title"><Icon icon="fas file-alt" fixedWidth /> {{ $t('transaction.receipt.event_logs') }}</div>
                 <div class="column info-value">
                   <ul v-for="log in receipt.logs" class="event-log">
                     <li>
