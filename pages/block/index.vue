@@ -9,18 +9,18 @@
     <table class="table is-fullwidth is-bordered is-striped">
       <thead>
         <tr>
-          <th>{{ $t('block.list.height') }}</th>
-          <th>{{ $t('block.list.time') }}</th>
-          <th class="is-hidden-touch">{{ $t('block.list.reward') }}</th>
-          <th class="is-hidden-touch">{{ $t('block.list.mined_by') }}</th>
-          <th class="is-hidden-touch">{{ $t('block.list.size') }}</th>
-          <th>{{ $t('block.list.transactions') }}</th>
+          <th><Icon icon="fas shield-alt" fixedWidth /> {{ $t('block.list.height') }}</th>
+          <th><Icon icon="fas clock" fixedWidth /> {{ $t('block.list.time') }}</th>
+          <th class="is-hidden-touch"><Icon icon="fas coins" fixedWidth /> {{ $t('block.list.reward') }}</th>
+          <th class="is-hidden-touch"><Icon icon="fas meteor" fixedWidth /> {{ $t('block.list.mined_by') }}</th>
+          <th class="is-hidden-touch"><Icon icon="fas weight-hanging" fixedWidth /> {{ $t('block.list.size') }}</th>
+          <th><Icon icon="fas list-ul" fixedWidth /> {{ $t('block.list.transactions') }}</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="{height, timestamp, size, reward, miner, transactionCount} of list">
           <td>
-            <BlockLink :block="height" :clipboard="false" />
+            <Icon icon="cube" fixedWidth /> <BlockLink :block="height" :clipboard="false" />
           </td>
           <td>{{ timestamp | timestamp() }}</td>
           <td class="is-hidden-touch monospace">{{ reward | revo(8) }} RVO</td>
