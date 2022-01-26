@@ -3,7 +3,7 @@
     <div class="navbar-brand is-size-4">
       <nuxt-link to="/" class="navbar-item navbar-logo">
         <span class="revo-icon">
-          <img src="@/icons/revo-light.svg" />
+          <<img src="@/icons/revo-light.svg" />
         </span>
       </nuxt-link>
       <button type="button" class="button navbar-burger" @click="showMenu = !showMenu">
@@ -50,7 +50,7 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-header-title">
-                <Icon icon="database" fixedWidth />
+                <Icon icon="fas shield-alt" fixedWidth />
                 {{ $t('blockchain.blockchain_height') }}
               </h3>
             </div>
@@ -109,6 +109,23 @@
             </div>
           </div>
         </div>
+		
+		<div class="column">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-header-title">
+                <Icon icon="tint" fixedWidth />
+					Min Gas Price
+              </h3>
+            </div>
+            <div class="card-body">
+              <p class="information">
+                <span class="value">0.00000001</span>
+              </p>
+            </div>
+          </div>
+        </div>
+		
       </section>
 
       <form class="navbar-end" @submit.prevent="search">
