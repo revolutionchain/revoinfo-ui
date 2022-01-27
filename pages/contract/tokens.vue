@@ -4,11 +4,11 @@
     <table class="table is-fullwidth is-bordered is-striped">
       <thead>
         <tr>
-          <th>{{ $t('misc.ranking') }}</th>
-          <th>{{ $t('contract.token.name') }}</th>
-          <th>{{ $t('contract.token.total_supply') }}</th>
-          <th>{{ $t('contract.token.token_transactions') }}</th>
-          <th class="is-hidden-touch">{{ $t('contract.token.token_holders') }}</th>
+          <th><Icon icon="fas trophy" fixedWidth /> {{ $t('misc.ranking') }}</th>
+          <th><Icon icon="fas file-contract" fixedWidth /> {{ $t('contract.token.name') }}</th>
+          <th><Icon icon="fas coins" fixedWidth /> {{ $t('contract.token.total_supply') }}</th>
+          <th><Icon icon="fas exchange-alt" fixedWidth /> {{ $t('contract.token.token_transactions') }}</th>
+          <th class="is-hidden-touch"><Icon icon="fas users" fixedWidth /> {{ $t('contract.token.token_holders') }}</th>
         </tr>
       </thead>
       <tbody>
