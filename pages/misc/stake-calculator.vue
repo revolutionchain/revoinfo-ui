@@ -1,45 +1,45 @@
 <template>
   <form @submit.prevent>
     <div class="field">
-      <label>{{ $t('blockchain.network_weight') }}</label>
+      <label><Icon icon="fas balance-scale" fixedWidth /> {{ $t('blockchain.network_weight') }}</label>
       <div class="control">
         <output class="monospace">{{ netStakeWeight | revo(8) }}</output>
       </div>
     </div>
     <div class="field">
-      <label>{{ $t('misc.stake_calculator.enter_address') }}</label>
+      <label><Icon icon="fas meteor" fixedWidth /> {{ $t('misc.stake_calculator.enter_address') }}</label>
       <div class="control">
         <input type="text" class="input monospace" v-model="address">
       </div>
     </div>
     <div class="field">
-      <label>{{ $t('misc.stake_calculator.weight') }}</label>
+      <label><Icon icon="fas weight-hanging" fixedWidth /> {{ $t('misc.stake_calculator.weight') }}</label>
       <div class="control">
         <input type="number" class="input monospace" v-model="weightInput" placeholder="0">
       </div>
     </div>
     <template v-if="weight">
       <div class="field">
-        <label>{{ $t('misc.stake_calculator.expected_time') }}</label>
+        <label><Icon icon="fas clock" fixedWidth /> {{ $t('misc.stake_calculator.expected_time') }}</label>
         <div class="control">
           <output>{{ interval }}</output>
         </div>
       </div>
       <div v-if="expectedTime < 100000" class="field">
-        <label>{{ $t('misc.stake_calculator.average_blocks_per_day' )}}</label>
+        <label> {{ $t('misc.stake_calculator.average_blocks_per_day' )}}</label>
         <div class="control">
           <output>{{ (86400 / expectedTime).toFixed(2) }}</output>
         </div>
       </div>
       <div class="field">
-        <label>{{ $t('misc.stake_calculator.average_blocks_per_year' )}}</label>
+        <label><Icon icon="cube" fixedWidth /> {{ $t('misc.stake_calculator.average_blocks_per_year' )}}</label>
         <div class="control">
           <output>{{ (365 * 86400 / expectedTime).toFixed(2) }}</output>
         </div>
       </div>
     </template>
     <div class="field">
-      <label>{{ $t('misc.stake_calculator.yearly_roi') }}</label>
+      <label><Icon icon="fas calendar-alt" fixedWidth /> {{ $t('misc.stake_calculator.yearly_roi') }}</label>
       <div class="control">
         <output class="monospace">
           {{ (reward * 365 * 675 / this.netStakeWeight * 100).toFixed(2) }}%
