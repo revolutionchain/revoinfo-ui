@@ -23,7 +23,7 @@
       </div>
       <div class="card-body info-table">
         <div class="columns">
-          <div class="column info-title">{{ $t('address.address') }}</div>
+          <div class="column info-title"><Icon icon="fas meteor" fixedWidth /> {{ $t('address.address') }}</div>
           <div class="column info-value">
             <div v-for="address in addresses">
               <AddressLink :address="address" :plain="addresses.length === 1" />
@@ -31,7 +31,7 @@
           </div>
         </div>
         <div class="columns">
-          <div class="column info-title">{{ $t('address.balance') }}</div>
+          <div class="column info-title"><Icon icon="fas coins" fixedWidth /> {{ $t('address.balance') }}</div>
           <div class="column info-value monospace">
             {{ balance | revo }} RVO
             <span v-if="unconfirmed !== '0' && staking !== '0'">
@@ -47,19 +47,19 @@
           </div>
         </div>
         <div class="columns" v-if="ranking">
-          <div class="column info-title">{{ $t('misc.ranking') }}</div>
+          <div class="column info-title"><Icon icon="trophy" fixedWidth /> {{ $t('misc.ranking') }}</div>
           <div class="column info-value">{{ ranking }}</div>
         </div>
         <div class="columns">
-          <div class="column info-title">{{ $t('address.total_received') }}</div>
+          <div class="column info-title"><Icon icon="fas caret-down" fixedWidth />{{ $t('address.total_received') }}</div>
           <div class="column info-value monospace">{{ totalReceived | revo }} RVO</div>
         </div>
         <div class="columns">
-          <div class="column info-title">{{ $t('address.total_sent') }}</div>
+          <div class="column info-title"><Icon icon="fas caret-up" fixedWidth />{{ $t('address.total_sent') }}</div>
           <div class="column info-value monospace">{{ totalSent | revo }} RVO</div>
         </div>
         <div class="columns" v-if="existingTokenBalances.length">
-          <div class="column info-title">{{ $t('address.token_balances') }}</div>
+          <div class="column info-title"><Icon icon="fas wallet" fixedWidth /> {{ $t('address.token_balances') }}</div>
           <div class="column info-value">
             <div v-for="token in existingTokenBalances" class="monospace">
               {{ token.balance | erc20(token.decimals) }}
@@ -70,11 +70,11 @@
           </div>
         </div>
         <div class="columns" v-if="blocksMined">
-          <div class="column info-title">{{ $t('address.blocks_mined') }}</div>
+          <div class="column info-title"><Icon icon="cube" fixedWidth /> {{ $t('address.blocks_mined') }}</div>
           <div class="column info-value">{{ blocksMined }}</div>
         </div>
         <div class="columns">
-          <div class="column info-title">{{ $t('address.transaction_count') }}</div>
+          <div class="column info-title"><Icon icon="fas exchange-alt" fixedWidth /> {{ $t('address.transaction_count') }}</div>
           <div class="column info-value">{{ transactionCount }}</div>
         </div>
       </div>
