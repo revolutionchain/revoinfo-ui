@@ -3,9 +3,10 @@
   "version": "0.0.1",
   "description": "An open-source frontend for the Revoinfo API",
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start"
+   "dev": "nuxt",
+    "build": "HOST=185.222.242.98 PORT=3000 REVO_NETWORK=mainnet REVOINFO_API_BASE_CLIENT=//185.222.242.98:7001// REVOINFO_API_BASE_WS=//185.222.242.98:7001/ nuxt build",
+    "dev": "HOST=185.222.242.98 PORT=3000 REVO_NETWORK=mainnet REVOINFO_API_BASE_CLIENT=//185.222.242.98:7001// REVOINFO_API_BASE_WS=//185.222.242.98:7001/ nuxt",
+    "start": "HOST=185.222.242.98 PORT=3000 nuxt start"
   },
   "repository": {
     "type": "git",
