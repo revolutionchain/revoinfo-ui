@@ -9,25 +9,25 @@
       </div>
       <div class="card-body info-table">
         <div class="columns">
-          <div class="column info-title">{{ $t('contract.address') }}</div>
+          <div class="column info-title"><Icon icon="fas file-contract" fixedWidth /> {{ $t('contract.address') }}</div>
           <div class="column info-value">
             <AddressLink :address="address" plain />
           </div>
         </div>
         <template v-if="erc20">
           <div class="columns" v-if="erc20.name">
-            <div class="column info-title">{{ $t('contract.token.name') }}</div>
+            <div class="column info-title"><Icon icon="fas file-alt" fixedWidth /> {{ $t('contract.token.name') }}</div>
             <div class="column info-value">{{ erc20.name }}</div>
           </div>
           <div class="columns" v-if="erc20.holders">
-            <div class="column info-title">{{ $t('contract.token.total_supply') }}</div>
+            <div class="column info-title"><Icon icon="fas coins" fixedWidth /> {{ $t('contract.token.total_supply') }}</div>
             <div class="column info-value monospace">
               {{ erc20.totalSupply | erc20(erc20.decimals, true) }}
               {{ erc20.symbol || $t('contract.token.tokens') }}
             </div>
           </div>
           <div class="columns">
-            <div class="column info-title">{{ $t('contract.token.token_holders') }}</div>
+            <div class="column info-title"><Icon icon="fas users" fixedWidth /> {{ $t('contract.token.token_holders') }}</div>
             <div class="column info-value">{{ erc20.holders }}</div>
           </div>
         </template>
@@ -45,15 +45,15 @@
           </div>
         </template>
         <div class="columns">
-          <div class="column info-title">{{ $t('contract.balance') }}</div>
+          <div class="column info-title"><Icon icon="fas coins" fixedWidth /> {{ $t('contract.balance') }}</div>
           <div class="column info-value monospace">{{ balance | revo }} RVO</div>
         </div>
         <div class="columns">
-          <div class="column info-title">{{ $t('contract.total_received') }}</div>
+          <div class="column info-title"><Icon icon="fas caret-down" fixedWidth />{{ $t('contract.total_received') }}</div>
           <div class="column info-value monospace">{{ totalReceived | revo }} RVO</div>
         </div>
         <div class="columns">
-          <div class="column info-title">{{ $t('contract.total_sent') }}</div>
+          <div class="column info-title"><Icon icon="fas caret-up" fixedWidth />{{ $t('contract.total_sent') }}</div>
           <div class="column info-value monospace">{{ totalSent | revo }} RVO</div>
         </div>
         <div class="columns" v-if="existingTokenBalances.length">
@@ -68,7 +68,7 @@
           </div>
         </div>
         <div class="columns">
-          <div class="column info-title">{{ $t('contract.transaction_count') }}</div>
+          <div class="column info-title"><Icon icon="fas exchange-alt" fixedWidth /> {{ $t('contract.transaction_count') }}</div>
           <div class="column info-value">{{ transactionCount }}</div>
         </div>
       </div>
@@ -78,14 +78,14 @@
       <ul>
         <li :class="{'is-active': $route.matched.some(route => route.name === 'contract-id')}">
           <nuxt-link :to="{name: 'contract-id', params: {id}}">
-            {{ $t('contract.transaction_list') }}
+            <Icon icon="fas exchange-alt" fixedWidth /> {{ $t('contract.transaction_list') }}
           </nuxt-link>
         </li>
         <li
           v-if="type === 'erc20'"
           :class="{'is-active': $route.matched.some(route => route.name === 'contract-id-rich-list')}">
           <nuxt-link :to="{name: 'contract-id-rich-list', params: {id}}">
-            {{ $t('misc.rich_list_title') }}
+            <Icon icon="fas trophy" fixedWidth /> {{ $t('misc.rich_list_title') }}
           </nuxt-link>
         </li>
       </ul>
