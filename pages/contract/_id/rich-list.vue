@@ -4,10 +4,10 @@
       <table class="table is-fullwidth is-bordered is-striped">
         <thead>
           <tr>
-            <th>{{ $t('misc.ranking') }}</th>
-            <th>{{ $t('misc.address') }}</th>
-            <th>{{ $t('misc.balance') }}</th>
-            <th>{{ $t('misc.percentage') }}</th>
+            <th><Icon icon="fas trophy" fixedWidth /> {{ $t('misc.ranking') }}</th>
+            <th><Icon icon="fas meteor" fixedWidth /> {{ $t('misc.address') }}</th>
+            <th><Icon icon="fas coins" fixedWidth /> {{ $t('misc.balance') }}</th>
+            <th><Icon icon="fas percentage" fixedWidth /> {{ $t('misc.percentage') }}</th>
           </tr>
         </thead>
         <tbody>
