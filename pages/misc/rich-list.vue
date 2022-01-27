@@ -6,8 +6,8 @@
         <tr>
           <th><Icon icon="trophy" fixedWidth /> {{ $t('misc.ranking') }}</th>
           <th><Icon icon="fas meteor" fixedWidth /> {{ $t('misc.address') }}</th>
-          <th><Icon icon="fas piggy-bank" fixedWidth /> {{ $t('misc.balance') }}</th>
-          <th><Icon icon="trophy" fixedWidth /> {{ $t('misc.percentage') }}</th>
+          <th><Icon icon="fas coins" fixedWidth /> {{ $t('misc.balance') }}</th>
+          <th><Icon icon="fas percentage" fixedWidth /> {{ $t('misc.percentage') }}</th>
         </tr>
       </thead>
       <tbody>
