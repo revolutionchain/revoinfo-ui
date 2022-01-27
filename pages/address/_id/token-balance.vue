@@ -16,7 +16,7 @@
           <tr v-if="responsive.isTablet">
             <th><Icon icon="fas clock" fixedWidth /> {{ $t('address.timestamp') }}</th>
             <th><Icon icon="fas info" fixedWidth /> {{ $t('address.transaction_id') }}</th>
-            <th><Icon icon="fas meteor" fixedWidth /> {{ $t('address.token_balances') }}</th>
+            <th><Icon icon="fas coins" fixedWidth /> {{ $t('address.token_balances') }}</th>
             <th><Icon icon="fas exchange-alt" fixedWidth /> {{ $t('address.changes') }}</th>
           </tr>
           <template v-else>
