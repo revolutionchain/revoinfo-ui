@@ -111,7 +111,7 @@ contract:
   balance: Balance
   total_received: Total Received
   total_sent: Total Sent
-  transaction_count: Transaction Count
+  transaction_count: Total Tx
   transaction_list: Transaction List
 misc:
   misc: Misc
