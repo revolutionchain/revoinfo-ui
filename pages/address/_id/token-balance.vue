@@ -14,10 +14,10 @@
       <table class="table is-fullwidth is-bordered is-striped">
         <thead>
           <tr v-if="responsive.isTablet">
-            <th>{{ $t('address.timestamp') }}</th>
-            <th>{{ $t('address.transaction_id') }}</th>
-            <th>{{ $t('address.token_balances') }}</th>
-            <th>{{ $t('address.changes') }}</th>
+            <th><Icon icon="fas clock" fixedWidth /> {{ $t('address.timestamp') }}</th>
+            <th><Icon icon="fas info" fixedWidth /> {{ $t('address.transaction_id') }}</th>
+            <th><Icon icon="fas meteor" fixedWidth /> {{ $t('address.token_balances') }}</th>
+            <th><Icon icon="fas exchange-alt" fixedWidth /> {{ $t('address.changes') }}</th>
           </tr>
           <template v-else>
             <tr>
