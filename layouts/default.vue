@@ -53,7 +53,7 @@
     background-image: url(./images/nebula.png);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position-y: bottom;
     color: white;
     height: 450px;
   }
@@ -99,4 +99,14 @@
     color: #00b712;
     border-bottom-color: #00b712;
   }
+  .tabs a { color:white; }
+  
+  .pagination-link { color:white; }
+  
+  .label { color:white;}
+  
+  .pagination-ellipsis { color:white; };
+  
+  .card { border-radius:8px;}
+  
 </style>
