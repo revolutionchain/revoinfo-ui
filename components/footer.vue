@@ -1,11 +1,9 @@
 <template>
-  <footer>
+  <!--<footer>
     <div class="container">
       <h3 class="is-size-4 is-uppercase">{{ $t('footer.contact_us') }}</h3>
       <div class="line"></div>
       <a href="mailto:info@revolutionchain.it">info@revolutionchain.it</a>
-      
-<!--
 
       <ul class="links">
         <li>
@@ -30,25 +28,39 @@
         </li>
       </ul>
 
--->
-
       <div class="copyright">
         2017 - 2021 REVO &copy; All rights Reserved
       </div>
     </div>
-  </footer>
+  </footer>-->
+  <footer>
+		<div>
+      <p>Copyright © 2021 - <a href="https://revo.network/" target="_blank">Revo Technologies</a><font color="green"><br><i class="fa fa-leaf" aria-hidden="true"></i> energy saving protocol</font></p>
+      <a href="#"><i class="fab fa-github-alt" aria-hidden="true"></i></a>&nbsp;
+      <a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a>&nbsp;
+      <a href="#"><i class="fab fa-reddit" aria-hidden="true"></i></a>
+		</div>
+	</footer>
 </template>
 
 <style lang="less" scoped>
   footer {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-    background-color: #1a191e;
+    padding-top: 3rem;
+    padding-bottom: 1.5rem;
+    background-color: black;
     text-align: center;
-    color: white;
+    p {
+      font-size: 14px;
+      font-weight: 400;
+      color: #697982;
+      margin-bottom: 1rem;
+    }
   }
-  a:link, a:visited, a:hover, a:active {
-    color: inherit;
+  a:link, a:visited, a:active {
+    color: #87A1AD;
+  }
+  a:hover {
+    color: green;
   }
   .line {
     width: 2rem;

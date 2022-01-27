@@ -1,11 +1,11 @@
 <template>
   <nav class="navbar">
     <div class="navbar-brand is-size-4">
-      <nuxt-link to="/" class="navbar-item navbar-logo">
+      <a href="https://revo.network" class="navbar-item navbar-logo">
         <span class="revo-icon">
           <img src="@/icons/revo-light.svg" />
         </span>
-      </nuxt-link>
+      </a>
       <button type="button" class="button navbar-burger" @click="showMenu = !showMenu">
         <span></span><span></span><span></span>
       </button>
@@ -110,17 +110,19 @@
           </div>
         </div>
 		
-		<div class="column">
+        <div class="column">
           <div class="card">
             <div class="card-header">
               <h3 class="card-header-title">
                 <Icon icon="tint" fixedWidth />
-					Min Gas Price
+                Min Gas Price
               </h3>
             </div>
             <div class="card-body">
               <p class="information">
-                <span class="value">0.00000001 RVO/Unit</span>
+                <span class="value" v-if="dgpInfo">
+                  {{ (dgpInfo.minGasPrice / 100000000).toFixed(8) }} RVO/Unit
+                </span>
               </p>
             </div>
           </div>
@@ -153,7 +155,8 @@
         searching: false,
         difficulty: 0,
         stakeWeight: 0,
-        feeRate: 0
+        feeRate: 0,
+        dgpInfo: {},
       }
     },
     computed: {
@@ -162,6 +165,9 @@
       }
     },
     methods: {
+      onDgpInfo(dgpInfo) {
+        this.dgpInfo = dgpInfo;
+      },
       onStakeWeight(stakeWeight) {
         this.stakeWeight = stakeWeight
       },
@@ -212,21 +218,25 @@
       }
     },
     async mounted() {
-      let [currentBlock, {netStakeWeight: stakeWeight, feeRate}] = await Promise.all([
+      let [currentBlock, {netStakeWeight: stakeWeight, feeRate, dgpInfo}] = await Promise.all([
         Block.get(this.$store.state.blockchain.height),
         Misc.info()
       ])
       this.difficulty = currentBlock.difficulty;
       this.stakeWeight = stakeWeight;
       this.feeRate = feeRate;
-      this._onStakeWeight = this.onStakeWeight.bind(this)
-      this._onFeeRate = this.onFeeRate.bind(this)
-      this.$subscribe('blockchain', 'stakeweight', this._onStakeWeight)
-      this.$subscribe('blockchain', 'feerate', this._onFeeRate)
+      this.dgpInfo = dgpInfo;
+      this._onStakeWeight = this.onStakeWeight.bind(this);
+      this._onFeeRate = this.onFeeRate.bind(this);
+      this._onDgpInfo = this.onDgpInfo.bind(this);
+      this.$subscribe('blockchain', 'stakeweight', this._onStakeWeight);
+      this.$subscribe('blockchain', 'feerate', this._onFeeRate);
+      this.$subscribe('blockchain', 'dgpinfo', this._onDgpInfo);
     },
     beforeDestroy() {
-      this.$unsubscribe('blockchain', 'stakeweight', this._onStakeWeight)
-      this.$unsubscribe('blockchain', 'feerate', this._onFeeRate)
+      this.$unsubscribe('blockchain', 'stakeweight', this._onStakeWeight);
+      this.$unsubscribe('blockchain', 'feerate', this._onFeeRate);
+      this.$unsubscribe('blockchain', 'dgpinfo', this._onDgpInfo);
     }
   }
 </script>

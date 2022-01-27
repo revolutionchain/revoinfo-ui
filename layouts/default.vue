@@ -61,7 +61,14 @@
     position: relative;
     flex: 1;
     padding: 0.5rem 0 1rem;
+    background-image: url(./images/world-space.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     background-color: #101C26;
+    @media screen and (min-width: 1250px) {
+      height: 100vh;
+    }
   }
   .my-addresses {
     position: fixed;
