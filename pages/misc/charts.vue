@@ -65,14 +65,14 @@
               type: 'bar',
               name: this.$tc('misc.stats.contract_transactions', 2),
               stack: 1,
-              itemStyle: {color: '#64cc6d'},
+              itemStyle: {color: '#003d99'},
               data: this.dailyTransactions.map(({time, contractTransactionCount}) => [time, contractTransactionCount])
             },
             {
               type: 'bar',
               name: this.$tc('misc.stats.total_transactions', 2),
               stack: 1,
-              itemStyle: {color: 'rgba(46, 154, 208, 1)'},
+              itemStyle: {color: '#00b33c'},
               data: this.dailyTransactions.map(({time, transactionCount, contractTransactionCount}) => [
                 time, transactionCount - contractTransactionCount, transactionCount
               ]),
@@ -119,11 +119,11 @@
             type: 'bar',
             name: this.$t('misc.stats.blocks'),
             symbol: 'none',
-            itemStyle: {color: 'rgba(46, 154, 208, 1)'},
-            lineStyle: {color: 'rgba(46, 154, 208, 1)'},
+            itemStyle: {color: '#003d99'},
+            lineStyle: {color: '#003d99)'},
             data: this.blockInterval.map(({interval, count}) => [interval, count])
           },
-          dataZoom: {type: 'slider', endValue: 600}
+          dataZoom: {type: 'slider', endValue: 300}
         })
       },
       async renderAddressGrowth() {
@@ -145,8 +145,8 @@
             name: this.$tc('blockchain.address', 2),
             smooth: true,
             symbol: 'none',
-            itemStyle: {color: 'rgba(46, 154, 208, 1)'},
-            lineStyle: {color: 'rgba(46, 154, 208, 1)'},
+            itemStyle: {color: '#003d99'},
+            lineStyle: {color: '#003d99'},
             data: this.addressGrowth.map(({time, addresses}) => [time, addresses])
           },
           dataZoom: {type: 'slider'},
