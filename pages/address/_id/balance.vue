@@ -11,12 +11,12 @@
         </tr>
         <template v-else>
           <tr>
-            <th>{{ $t('address.timestamp') }}</th>
-            <th>{{ $t('address.transaction_id') }}</th>
+            <th><Icon icon="fas clock" fixedWidth /> {{ $t('address.timestamp') }}</th>
+            <th><Icon icon="fas info" fixedWidth /> {{ $t('address.transaction_id') }}</th>
           </tr>
           <tr>
-            <th>{{ $t('address.balance') }}</th>
-            <th>{{ $t('address.changes') }}</th>
+            <th><Icon icon="fas coins" fixedWidth /> {{ $t('address.balance') }}</th>
+            <th><Icon icon="fas exchange-alt" fixedWidth /> {{ $t('address.changes') }}</th>
           </tr>
         </template>
       </thead>
