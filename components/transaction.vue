@@ -411,6 +411,9 @@
   .transaction-item {
     padding-left: 0.75em;
     padding-right: 0.75em;
+    .column:first-child {
+      margin-top: 15px;
+    }
     &::before {
       display: block;
       width: 100%;

@@ -165,6 +165,8 @@
 <style lang="less" scoped>
   .chart-wrapper {
     position: relative;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
     &:not(:first-child) {
       margin-top: 1em;
     }
@@ -181,5 +183,6 @@
     bottom: 0;
     left: 0;
     right: 0;
+    padding: 8px;
   }
 </style>

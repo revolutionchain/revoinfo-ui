@@ -18,19 +18,19 @@
           <div class="has-dropdown is-hoverable">
             <nuxt-link to="/misc/charts" class="navbar-link">{{ $t('misc.misc') }}</nuxt-link>
             <div class="navbar-dropdown is-boxed">
-              <nuxt-link to="/misc/charts" class="navbar-item">
+              <nuxt-link to="/misc/charts" class="navbar-item subitem">
                 {{ $t('misc.charts_title') }}
               </nuxt-link>
-              <nuxt-link to="/misc/rich-list" class="navbar-item">
+              <nuxt-link to="/misc/rich-list" class="navbar-item subitem">
                 {{ $t('misc.rich_list_title') }}
               </nuxt-link>
-              <nuxt-link to="/misc/biggest-miners" class="navbar-item">
+              <nuxt-link to="/misc/biggest-miners" class="navbar-item subitem">
                 {{ $t('misc.biggest_miners_title') }}
               </nuxt-link>
-              <nuxt-link to="/misc/stake-calculator" class="navbar-item">
+              <nuxt-link to="/misc/stake-calculator" class="navbar-item subitem">
                 {{ $t('misc.stake_calculator.title') }}
               </nuxt-link>
-              <nuxt-link to="/misc/raw-tx" class="navbar-item">
+              <nuxt-link to="/misc/raw-tx" class="navbar-item subitem">
                 Send Raw Transaction
               </nuxt-link>
             </div>
@@ -56,7 +56,9 @@
             </div>
             <div class="card-body">
               <p class="information">
-                <span class="value">{{ blockchain.height.toLocaleString() }}</span>
+                <BlockLink :block="blockchain.height" :clipboard="false">
+                  <span class="value">{{ blockchain.height.toLocaleString() }}</span>
+                </BlockLink>
               </p>
             </div>
           </div>
@@ -213,8 +215,8 @@
     },
     watch: {
       async 'blockchain.height'(height) {
-        let block = await Block.get(height)
-        this.difficulty = block.difficulty
+        let block = await Block.get(height);
+        this.difficulty = block.difficulty;
       }
     },
     async mounted() {
@@ -263,10 +265,11 @@
     }
   }
 
-  .columns.is-desktop {
-    padding: 0 350px;
+  @media screen and (min-width: 1300px) {
+    .columns.is-desktop {
+      padding: 0 20%;
+    }
   }
-
   .navbar {
     background-color: transparent;
     .navbar-brand {
@@ -280,9 +283,17 @@
       text-transform: capitalize;
       border-bottom: 4px solid transparent;
       transition: border-bottom 0.1s linear;
-      &:hover {
+      &:not(.subitem):hover {
         background-color: transparent;
         border-bottom: 4px solid rgba(255, 255, 255, 0.8);
+      }
+      &.subitem:hover {
+        color: white;
+      }
+    }
+    .navbar-link, .navbar-item {
+      &:focus, &:active, &:hover {
+        background: initial;
       }
     }
     a.navbar-link {

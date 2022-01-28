@@ -91,11 +91,11 @@
   }
   a, .breadcrumb a {
     color: #00b712;
+    &:hover {
+      color: green;
+    }
   }
-  .chart-wrapper {
-    background-color: rgba(255, 255, 255, 0.9);
-  }
-  .tabs li.is-active a {
+  .tabs li.is-active a, .tabs a:hover {
     color: #00b712;
     border-bottom-color: #00b712;
   }
@@ -107,6 +107,6 @@
   
   .pagination-ellipsis { color:white; };
   
-  .card { border-radius:8px;}
+  .card { border-radius:8px; }
   
 </style>

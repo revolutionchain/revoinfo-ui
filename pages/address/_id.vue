@@ -22,60 +22,65 @@
         </h3>
       </div>
       <div class="card-body info-table">
-        <div class="columns">
-          <div class="column info-title"><Icon icon="fas meteor" fixedWidth /> {{ $t('address.address') }}</div>
-          <div class="column info-value">
-            <div v-for="address in addresses">
-              <AddressLink :address="address" :plain="addresses.length === 1" />
+        <div class="left">
+          <div class="columns">
+            <div class="column info-title"><Icon icon="fas meteor" fixedWidth /> {{ $t('address.address') }}</div>
+            <div class="column info-value">
+              <div v-for="address in addresses">
+                <AddressLink :address="address" :plain="addresses.length === 1" />
+              </div>
             </div>
           </div>
-        </div>
-        <div class="columns">
-          <div class="column info-title"><Icon icon="fas coins" fixedWidth /> {{ $t('address.balance') }}</div>
-          <div class="column info-value monospace">
-            {{ balance | revo }} RVO
-            <span v-if="unconfirmed !== '0' && staking !== '0'">
-              ({{ unconfirmed | revo }} RVO {{ $t('address.unconfirmed') }},
-              {{ staking | revo }} RVO {{ $t('address.staking') }})
-            </span>
-            <span v-else-if="unconfirmed !== '0'">
-              ({{ unconfirmed | revo }} RVO {{ $t('address.unconfirmed') }})
-            </span>
-            <span v-else-if="staking !== '0'">
-              ({{ staking | revo }} RVO {{ $t('address.staking') }})
-            </span>
-          </div>
-        </div>
-        <div class="columns" v-if="ranking">
-          <div class="column info-title"><Icon icon="trophy" fixedWidth /> {{ $t('misc.ranking') }}</div>
-          <div class="column info-value">{{ ranking }}</div>
-        </div>
-        <div class="columns">
-          <div class="column info-title"><Icon icon="fas caret-down" fixedWidth />{{ $t('address.total_received') }}</div>
-          <div class="column info-value monospace">{{ totalReceived | revo }} RVO</div>
-        </div>
-        <div class="columns">
-          <div class="column info-title"><Icon icon="fas caret-up" fixedWidth />{{ $t('address.total_sent') }}</div>
-          <div class="column info-value monospace">{{ totalSent | revo }} RVO</div>
-        </div>
-        <div class="columns" v-if="existingTokenBalances.length">
-          <div class="column info-title"><Icon icon="fas wallet" fixedWidth /> {{ $t('address.token_balances') }}</div>
-          <div class="column info-value">
-            <div v-for="token in existingTokenBalances" class="monospace">
-              {{ token.balance | erc20(token.decimals) }}
-              <AddressLink :address="token.address">
-                {{ token.symbol || $t('contract.token.tokens') }}
-              </AddressLink>
+          <div class="columns">
+            <div class="column info-title"><Icon icon="fas coins" fixedWidth /> {{ $t('address.balance') }}</div>
+            <div class="column info-value monospace">
+              {{ balance | revo }} RVO
+              <span v-if="unconfirmed !== '0' && staking !== '0'">
+                ({{ unconfirmed | revo }} RVO {{ $t('address.unconfirmed') }},
+                {{ staking | revo }} RVO {{ $t('address.staking') }})
+              </span>
+              <span v-else-if="unconfirmed !== '0'">
+                ({{ unconfirmed | revo }} RVO {{ $t('address.unconfirmed') }})
+              </span>
+              <span v-else-if="staking !== '0'">
+                ({{ staking | revo }} RVO {{ $t('address.staking') }})
+              </span>
             </div>
           </div>
+          <div class="columns" v-if="ranking">
+            <div class="column info-title"><Icon icon="trophy" fixedWidth /> {{ $t('misc.ranking') }}</div>
+            <div class="column info-value">{{ ranking }}</div>
+          </div>
+          <div class="columns">
+            <div class="column info-title"><Icon icon="fas caret-down" fixedWidth />{{ $t('address.total_received') }}</div>
+            <div class="column info-value monospace">{{ totalReceived | revo }} RVO</div>
+          </div>
+          <div class="columns">
+            <div class="column info-title"><Icon icon="fas caret-up" fixedWidth />{{ $t('address.total_sent') }}</div>
+            <div class="column info-value monospace">{{ totalSent | revo }} RVO</div>
+          </div>
+          <div class="columns" v-if="existingTokenBalances.length">
+            <div class="column info-title"><Icon icon="fas wallet" fixedWidth /> {{ $t('address.token_balances') }}</div>
+            <div class="column info-value">
+              <div v-for="token in existingTokenBalances" class="monospace">
+                {{ token.balance | erc20(token.decimals) }}
+                <AddressLink :address="token.address">
+                  {{ token.symbol || $t('contract.token.tokens') }}
+                </AddressLink>
+              </div>
+            </div>
+          </div>
+          <div class="columns" v-if="blocksMined">
+            <div class="column info-title"><Icon icon="cube" fixedWidth /> {{ $t('address.blocks_mined') }}</div>
+            <div class="column info-value">{{ blocksMined }}</div>
+          </div>
+          <div class="columns">
+            <div class="column info-title"><Icon icon="fas exchange-alt" fixedWidth /> {{ $t('address.transaction_count') }}</div>
+            <div class="column info-value">{{ transactionCount }}</div>
+          </div>
         </div>
-        <div class="columns" v-if="blocksMined">
-          <div class="column info-title"><Icon icon="cube" fixedWidth /> {{ $t('address.blocks_mined') }}</div>
-          <div class="column info-value">{{ blocksMined }}</div>
-        </div>
-        <div class="columns">
-          <div class="column info-title"><Icon icon="fas exchange-alt" fixedWidth /> {{ $t('address.transaction_count') }}</div>
-          <div class="column info-value">{{ transactionCount }}</div>
+        <div class="right">
+          <qrcode-vue :value="id" size="200" />
         </div>
       </div>
     </div>
@@ -106,14 +111,12 @@
 </template>
 
 <script>
-  import Vue from 'vue'
   import Address from '@/models/address'
-  import Transaction from '@/models/transaction'
   import {RequestError} from '@/services/revoinfo-api'
-  import {extendAddress} from '@/utils/address'
-  import {scrollIntoView} from '@/utils/dom'
+  import QrcodeVue from 'qrcode.vue'
 
   export default {
+    components: { QrcodeVue },
     head() {
       return {
         title: this.$t('blockchain.address') + ' ' + this.id
@@ -176,9 +179,20 @@
   }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
   .multiple-title {
     display: flex;
     justify-content: space-between;
+  }
+  .info-table {
+    display: flex;
+    .left {
+      width: 70%;
+    }
+    .right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 </style>

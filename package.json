@@ -3,10 +3,9 @@
   "version": "0.0.1",
   "description": "An open-source frontend for the Revoinfo API",
   "scripts": {
-   "dev": "nuxt",
-    "build": "HOST=185.222.242.98 PORT=5000 REVO_NETWORK=mainnet REVOINFO_API_BASE_CLIENT=//185.222.242.98:7001// REVOINFO_API_BASE_WS=//185.222.242.98:7001/ nuxt build",
+    "build": "cross-env HOST=185.222.242.98 PORT=5000 REVO_NETWORK=mainnet REVOINFO_API_BASE_CLIENT=//185.222.242.98:7001// REVOINFO_API_BASE_WS=//185.222.242.98:7001/ nuxt build",
     "dev": "HOST=185.222.242.98 PORT=5000 REVO_NETWORK=mainnet REVOINFO_API_BASE_CLIENT=//185.222.242.98:7001// REVOINFO_API_BASE_WS=//185.222.242.98:7001/ nuxt",
-    "start": "HOST=185.222.242.98 PORT=5000 nuxt start"
+    "start": "cross-env HOST=185.222.242.98 PORT=5000 nuxt start"
   },
   "repository": {
     "type": "git",
@@ -31,11 +30,13 @@
     "crypto-browserify": "^3.12.0",
     "moment": "^2.24.0",
     "nuxt": "^2.15.8",
+    "qrcode.vue": "^1.7.0",
     "vue-i18n": "^8.14.1"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "bulma": "^0.7.5",
+    "cross-env": "^7.0.3",
     "echarts": "^4.3.0",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
