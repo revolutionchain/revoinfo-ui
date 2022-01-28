@@ -92,19 +92,19 @@
       <ul>
         <li :class="{'is-active': $route.matched.some(route => route.name === 'address-id')}">
           <nuxt-link :to="{name: 'address-id', params: {id}}">
-            {{ $t('address.transaction_list') }}
+            <Icon icon="fas exchange-alt" fixedWidth /> {{ $t('address.transaction_list') }}
           </nuxt-link>
         </li>
         <li v-if="totalReceived !== '0'"
           :class="{'is-active': $route.matched.some(route => route.name === 'address-id-balance')}">
           <nuxt-link :to="{name: 'address-id-balance', params: {id}}">
-            {{ $t('address.balance_changes') }}
+            <Icon icon="fas coins" fixedWidth /> {{ $t('address.balance_changes') }}
           </nuxt-link>
         </li>
         <li v-if="erc20Balances.length"
           :class="{'is-active': $route.matched.some(route => route.name === 'address-id-token-balance')}">
           <nuxt-link :to="{name: 'address-id-token-balance', params: {id}}">
-            {{ $t('address.token_balance_changes') }}
+            <Icon icon="fas wallet" fixedWidth /> {{ $t('address.token_balance_changes') }}
           </nuxt-link>
         </li>
       </ul>
