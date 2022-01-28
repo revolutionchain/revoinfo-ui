@@ -80,7 +80,10 @@
           </div>
         </div>
         <div class="right">
-          <qrcode-vue :value="id" size="200" />
+          <figure class="qr-code">
+            <vue-qrcode :value="id" />
+            <img class="qrcode-image" src="../../icons/revo-icon-white.png" />
+          </figure>
         </div>
       </div>
     </div>
@@ -113,10 +116,11 @@
 <script>
   import Address from '@/models/address'
   import {RequestError} from '@/services/revoinfo-api'
-  import QrcodeVue from 'qrcode.vue'
+  // https://github.com/fengyuanchen/vue-qrcode
+  import VueQrcode from '@chenfengyuan/vue-qrcode';
 
   export default {
-    components: { QrcodeVue },
+    components: { VueQrcode },
     head() {
       return {
         title: this.$t('blockchain.address') + ' ' + this.id
@@ -180,6 +184,18 @@
 </script>
 
 <style lang="less" scoped>
+  .qr-code {
+    position: relative;
+    .qrcode-image {
+      position: absolute;
+      background: white;
+      left: 40%;
+      top: 40%;
+      width: auto;
+      height: 30px;
+      background: white;
+    }
+  }
   .multiple-title {
     display: flex;
     justify-content: space-between;
@@ -187,7 +203,7 @@
   .info-table {
     display: flex;
     .left {
-      width: 70%;
+      width: 85%;
     }
     .right {
       display: flex;
