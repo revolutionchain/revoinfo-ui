@@ -3,13 +3,13 @@
     <div class="card section-card">
       <div class="card-header">
         <div class="card-header-icon">
-          <Icon icon="address-card" regular fixedWidth />
+          <font size="5px"><Icon icon="address-card" regular fixedWidth /></font>
         </div>
         <h3 v-if="addresses.length > 1" class="card-header-title">
           {{ $t('address.summary') }}
         </h3>
-        <h3 v-else class="card-header-title multiple-title">
-          <span class="title-left">{{ $t('address.summary') }}</span>
+        <h3 style="margin-left:-20px" v-else class="card-header-title multiple-title">
+          <span class="title-left"><font size="5px">{{ $t('address.summary') }}</font></span>
           <span class="title-right">
             <a href="#" v-if="myAddresses.includes(addresses[0])"
               @click.prevent="removeMyAddress(addresses[0])">

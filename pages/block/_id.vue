@@ -3,9 +3,21 @@
     <div class="card section-card">
       <div class="card-header">
         <div class="card-header-icon">
-          <Icon icon="cube" fixedWidth />
+          <font size="5px"><Icon icon="cube" fixedWidth /></font>
         </div>
-        <h3 class="card-header-title">{{ $t('block.summary') }}</h3>
+        <h3 style="margin-left:-20px" class="card-header-title"><font size="5px">{{ $t('block.summary') }}</font></h3>
+		<div style="padding:30px;" align="right">
+			<div class="columns" v-if="prevHash && prevHash != '0'.repeat(64)">          
+				<BlockLink :block="height - 1" :clipboard="prevHash">
+				 <Icon icon="cube" fixedWidth /><Icon icon="fas caret-left" fixedWidth />{{ $t('block.previous_block') }} 
+				</BlockLink>		  
+			</div>
+			<div class="columns" v-if="nextHash">
+				<BlockLink :block="height + 1" :clipboard="nextHash">
+				  <Icon icon="cube" fixedWidth /> {{ $t('block.next_block') }}<Icon icon="fas caret-right" fixedWidth />
+				</BlockLink>
+			</div>
+		</div>
       </div>
       <div class="card-body info-table">
         <div class="columns">
@@ -41,7 +53,7 @@
           <div class="column info-value">{{ difficulty }}</div>
         </div>
         <div class="columns">
-          <div class="column info-title">{{ $t('block.merkle_root') }}</div>
+          <div class="column info-title"><Icon icon="fas carrot" fixedWidth /> {{ $t('block.merkle_root') }}</div>
           <div class="column info-value monospace">{{ merkleRoot }}</div>
         </div>
         <div class="columns" v-if="miner">
@@ -53,22 +65,7 @@
         <div class="columns">
           <div class="column info-title"><Icon icon="fas list-ul" fixedWidth /> {{ $t('block.transactions') }}</div>
           <div class="column info-value">{{ tx.length }}</div>
-        </div>
-        <div class="columns" v-if="prevHash && prevHash != '0'.repeat(64)">
-          <div class="column info-title"><Icon icon="fas caret-left" fixedWidth /><Icon icon="cube" fixedWidth /> {{ $t('block.previous_block') }}</div>
-          <div class="column info-value">
-            <BlockLink :block="height - 1" :clipboard="prevHash">
-              {{ prevHash }}
-            </BlockLink>
-          </div>
-        </div>
-        <div class="columns" v-if="nextHash">
-          <div class="column info-title"><Icon icon="cube" fixedWidth /> {{ $t('block.next_block') }} <Icon icon="fas caret-right" fixedWidth /></div>
-          <div class="column info-value">
-            <BlockLink :block="height + 1" :clipboard="nextHash">
-              {{ nextHash }}
-            </BlockLink>
-          </div>
+        </div>        
         </div>
       </div>
     </div>
