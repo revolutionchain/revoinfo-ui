@@ -8,6 +8,7 @@
         <h3 style="margin-left:-20px" class="card-header-title"><font size="5px"> {{ $t('contract.summary') }}</font></h3>
       </div>
       <div class="card-body info-table">
+	  <div class="left">
         <div class="columns">
           <div class="column info-title"><Icon icon="fas file-contract" fixedWidth /> {{ $t('contract.address') }}</div>
           <div class="column info-value">
@@ -71,6 +72,13 @@
           <div class="column info-title"><Icon icon="fas exchange-alt" fixedWidth /> {{ $t('contract.transaction_count') }}</div>
           <div class="column info-value">{{ transactionCount }}</div>
         </div>
+		</div>
+		<div class="right">
+          <figure class="qr-code">
+            <vue-qrcode :value="id" />
+            <img class="qrcode-image" src="../../icons/revo-icon-white.png" />
+          </figure>
+        </div>
       </div>
     </div>
 
@@ -97,8 +105,10 @@
 <script>
   import Contract from '@/models/contract'
   import {RequestError} from '@/services/revoinfo-api'
+  import VueQrcode from '@chenfengyuan/vue-qrcode';
 
-  export default {
+  export default { 
+	components: {VueQrcode},
     head() {
       return {
         title: this.$t('blockchain.contract') + ' ' + this.id
@@ -160,3 +170,32 @@
     }
   }
 </script>
+<style lang="less" scoped>
+  .qr-code {
+    position: relative;
+    .qrcode-image {
+      position: absolute;
+      background: white;
+      left: 40%;
+      top: 40%;
+      width: auto;
+      height: 30px;
+      background: white;
+    }
+  }
+  .multiple-title {
+    display: flex;
+    justify-content: space-between;
+  }
+  .info-table {
+    display: flex;
+    .left {
+      width: 85%;
+    }
+    .right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+ </style>
