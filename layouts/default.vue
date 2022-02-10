@@ -50,7 +50,7 @@
     min-height: 100vh;
   }
   .nebula-section {
-    background-image: url(./images/nebula.png);
+    background-image: url(./images/nebula.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position-y: bottom;
@@ -61,7 +61,7 @@
     position: relative;
     flex: 1;
     padding: 0.5rem 0 1rem;
-    background-image: url(./images/world-space.png);
+    background-image: url(./images/world-space.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

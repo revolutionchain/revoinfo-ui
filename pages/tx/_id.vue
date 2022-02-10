@@ -3,9 +3,9 @@
     <div class="card section-card">
       <div class="card-header">
         <div class="card-header-icon">
-          <Icon icon="list-alt" fixedWidth />
+          <font size="5px"><Icon icon="list-alt" fixedWidth /></font>
         </div>
-        <h3 class="card-header-title">{{ $t('transaction.summary') }}</h3>
+        <h3 style="margin-left:-20px" class="card-header-title"><font size="5px">{{ $t('transaction.summary') }}</font></h3>
       </div>
       <div class="card-body info-table">
         <div class="columns">

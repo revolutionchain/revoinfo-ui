@@ -24,38 +24,38 @@ block:
     size: Block Size
     transactions: Txs
   summary: Block Summary
-  block_height: Block Height
-  block_hash: Block Hash
-  block_size: Block Size
-  block_weight: Block Weight
+  block_height: Height
+  block_hash: Hash
+  block_size: Size
+  block_weight: Weight
   bytes: bytes
   timestamp: Timestamp
-  block_reward: Block Reward
+  block_reward: Reward
   difficulty: Difficulty
   merkle_root: Merkle Root
   mined_by: Mined By
   transactions: Transactions
-  previous_block: Previous Block
-  next_block: Next Block
+  previous_block: Previous
+  next_block: Next
 transaction:
   summary: Transaction Summary
   confirmations: confirmation | confirmations
   unconfirmed: unconfirmed
   transaction_id: Transaction ID
   transaction_hash: Transaction Hash
-  included_in_block: Included In Block
-  transaction_size: Transaction Size
+  included_in_block: Included In
+  transaction_size: Size
   bytes: bytes
   timestamp: Timestamp
   confirmation: Confirmations
-  transaction_fee: Transaction Fee
+  transaction_fee: Fee
   coinbase_input: Coinbase Input
   empty_output: Empty Output
   op_return_output: OP_RETURN Output
   unparsed_address: Unparsed Address
   fee: Fee
   reward: Reward
-  gas_refund: Gas rimborsato
+  gas_refund: Gas refund
   script:
     type: Type
     script: Script
@@ -65,8 +65,8 @@ transaction:
     contract_call: Contract Call
   receipt:
     sender: Sender
-    contract_address: Contract Address
-    gas_used: Gas Used
+    contract_address: Contract
+    gas_used: Gas
     excepted: Excepted
     event_logs: Event Logs
     address: Address
@@ -80,10 +80,10 @@ address:
   balance: Balance
   unconfirmed: unconfirmed
   staking: staking
-  total_received: Total Received
-  total_sent: Total Sent
-  token_balances: Token Balances
-  blocks_mined: Blocks Mined
+  total_received: Received
+  total_sent: Sent
+  token_balances: Tokens
+  blocks_mined: Blocks
   transaction_count: Total Tx
   transaction_list: Transaction List
   balance_changes: Balance Changes
@@ -109,8 +109,8 @@ contract:
     token_transactions: Transactions
     token_holders: Token Holders
   balance: Balance
-  total_received: Total Received
-  total_sent: Total Sent
+  total_received: Received
+  total_sent: Sent
   transaction_count: Total Tx
   transaction_list: Transaction List
 misc:

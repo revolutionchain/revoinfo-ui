@@ -112,7 +112,7 @@
   export default {
     head() {
       return {
-        title: 'revo.info',
+        title: 'Beta - Revo Explorer',
         titleTemplate: null
       }
     },
