@@ -71,7 +71,7 @@
           <div class="column info-value">
             <div class="semi-donut margin" 
                 :style="`--percentage : ${gasUsage}; --fill: #00b712 ;`">
-              {{ $t('transaction.receipt.gas_usage') }} {{ gasUsage === 0 && '0%' }}
+              {{ $t('transaction.receipt.gas_usage') }}<br />{{ gasUsage }}%
             </div>
           </div>
         </div>    
@@ -125,6 +125,11 @@
         gasUsage: 0
       }
     },
+    watch: {
+      async 'transactions'(transactions) {
+        await this.getGasUsage(transactions);
+      }
+    },
     async asyncData({req, params, query, redirect, error}) {
       let id = params.id
       try {
@@ -140,19 +145,6 @@
           block.transactions.slice((page - 1) * 20, page * 20),
           {ip: req && req.ip}
         )
-        const info = await Misc.info();
-        const blockGasLimit = info.dgpInfo.blockGasLimit;
-        
-        let gasUsed = 0;
-        transactions.forEach(transaction => {
-          transaction.outputs.forEach(item => {
-            if (item.receipt) {
-              gasUsed += item.receipt.gasUsed;
-            }
-          })
-        });
-
-        const gasUsage = gasUsed / blockGasLimit * 100;
 
         return {
           height: block.height,
@@ -168,7 +160,6 @@
           nextHash: block.nextHash || null,
           tx: block.transactions,
           transactions,
-          gasUsage,
         }
       } catch (err) {
         if (err instanceof RequestError) {
@@ -190,6 +181,23 @@
     methods: {
       getLink(page) {
         return {name: 'block-id', params: {id: this.height}, query: {page}}
+      },
+      async getGasUsage(transactions) {
+
+        const info = await Misc.info();
+        const blockGasLimit = info.dgpInfo.blockGasLimit;
+        
+        let gasUsed = 0;
+
+        transactions.forEach(async (transaction) => {
+          const details = await Transaction.get(transaction.id);
+          details.outputs.forEach(item => {
+            if (item.receipt) {
+              gasUsed = gasUsed + item.receipt.gasUsed;
+            }
+            this.gasUsage = gasUsed / blockGasLimit * 100;
+          })
+        })
       }
     },
     async beforeRouteUpdate(to, from, next) {
@@ -206,6 +214,10 @@
       this.currentPage = page
       next()
       scrollIntoView(this.$refs['transaction-list'])
+    },
+    async mounted() {
+      this.transactions = await Transaction.getBrief(this.tx)
+      this.getGasUsage(this.transactions);
     }
   }
 </script>
