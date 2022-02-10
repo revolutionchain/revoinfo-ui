@@ -1,23 +1,23 @@
 <template>
-  <section class="container">
+  <section class="container block-section">
     <div class="card section-card">
       <div class="card-header">
         <div class="card-header-icon">
           <font size="5px"><Icon icon="cube" fixedWidth /></font>
         </div>
         <h3 style="margin-left:-20px" class="card-header-title"><font size="5px">{{ $t('block.summary') }}</font></h3>
-		<div style="padding:30px;" align="right">
-			<div class="columns" v-if="prevHash && prevHash != '0'.repeat(64)">          
-				<BlockLink :block="height - 1" :clipboard="prevHash">
-				 <Icon icon="cube" fixedWidth /><Icon icon="fas caret-left" fixedWidth />{{ $t('block.previous_block') }} 
-				</BlockLink>		  
-			</div>
-			<div class="columns" v-if="nextHash">
-				<BlockLink :block="height + 1" :clipboard="nextHash">
-				  <Icon icon="cube" fixedWidth /> {{ $t('block.next_block') }}<Icon icon="fas caret-right" fixedWidth />
-				</BlockLink>
-			</div>
-		</div>
+        <div style="padding:30px;" align="right">
+          <div class="columns" v-if="prevHash && prevHash != '0'.repeat(64)">          
+            <BlockLink :block="height - 1" :clipboard="prevHash">
+            <Icon icon="cube" fixedWidth /><Icon icon="fas caret-left" fixedWidth />{{ $t('block.previous_block') }} 
+            </BlockLink>		  
+          </div>
+          <div class="columns" v-if="nextHash">
+            <BlockLink :block="height + 1" :clipboard="nextHash">
+              <Icon icon="cube" fixedWidth /> {{ $t('block.next_block') }}<Icon icon="fas caret-right" fixedWidth />
+            </BlockLink>
+          </div>
+        </div>
       </div>
       <div class="card-body info-table">
         <div class="columns">
@@ -65,8 +65,16 @@
         <div class="columns">
           <div class="column info-title"><Icon icon="fas list-ul" fixedWidth /> {{ $t('block.transactions') }}</div>
           <div class="column info-value">{{ tx.length }}</div>
-        </div>        
-        </div>
+        </div>     
+        <div class="columns">
+          <div class="column info-title"><Icon icon="tint" fixedWidth /> {{ $t('transaction.receipt.gas_used') }}</div>
+          <div class="column info-value">
+            <div class="semi-donut margin" 
+                :style="`--percentage : ${gasUsage}; --fill: #00b712 ;`">
+              {{ $t('transaction.receipt.gas_usage') }} {{ gasUsage === 0 && '0%' }}
+            </div>
+          </div>
+        </div>    
       </div>
     </div>
 
@@ -89,6 +97,7 @@
 <script>
   import Block from '@/models/block'
   import Transaction from '@/models/transaction'
+  import Misc from '@/models/misc'
   import RequestError from '@/services/revoinfo-api'
   import {scrollIntoView} from '@/utils/dom'
 
@@ -112,7 +121,8 @@
         nextHash: null,
         tx: [],
         transactions: [],
-        currentPage: Number(this.$route.query.page || 1)
+        currentPage: Number(this.$route.query.page || 1),
+        gasUsage: 0
       }
     },
     async asyncData({req, params, query, redirect, error}) {
@@ -130,6 +140,20 @@
           block.transactions.slice((page - 1) * 20, page * 20),
           {ip: req && req.ip}
         )
+        const info = await Misc.info();
+        const blockGasLimit = info.dgpInfo.blockGasLimit;
+        
+        let gasUsed = 0;
+        transactions.forEach(transaction => {
+          transaction.outputs.forEach(item => {
+            if (item.receipt) {
+              gasUsed += item.receipt.gasUsed;
+            }
+          })
+        });
+
+        const gasUsage = gasUsed / blockGasLimit * 100;
+
         return {
           height: block.height,
           hash: block.hash,
@@ -143,7 +167,8 @@
           prevHash: block.prevHash || null,
           nextHash: block.nextHash || null,
           tx: block.transactions,
-          transactions
+          transactions,
+          gasUsage,
         }
       } catch (err) {
         if (err instanceof RequestError) {
@@ -189,4 +214,39 @@
   .pagination {
     padding: 1em;
   }
+
+  .block-section .pagination-link {
+    color: #00b712;
+  }
+  .semi-donut{
+    --percentage: 0;
+    --fill: #ff0;
+    width: 150px;
+    height: 75px;
+    position: relative;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    overflow: hidden;
+    color: var(--fill);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    box-sizing : border-box;
+    &:after{
+      content: '';
+      width: 150px;
+      height: 150px;
+      border:25px solid;
+      border-color : rgba(0,0,0,0.15) rgba(0,0,0,0.15) var(--fill) var(--fill);
+      position: absolute;
+      border-radius: 50%;
+      left: 0;
+      top: 0;
+      box-sizing : border-box;
+      transform: rotate( calc( 1deg * ( -45 + var(--percentage) * 1.8 ) ) );
+      animation : fillAnimation 1s ease-in;
+    }
+  }
+
 </style>
