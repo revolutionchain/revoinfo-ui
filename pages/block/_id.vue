@@ -67,11 +67,11 @@
           <div class="column info-value">{{ tx.length }}</div>
         </div>     
         <div class="columns">
-          <div class="column info-title"><Icon icon="tint" fixedWidth /> {{ $t('transaction.receipt.gas_used') }}</div>
+          <div class="column info-title"><Icon icon="tint" fixedWidth /> {{ $t('transaction.receipt.gas_usage') }}</div>
           <div class="column info-value">
             <div class="semi-donut margin" 
                 :style="`--percentage : ${gasUsage}; --fill: #00b712 ;`">
-              {{ $t('transaction.receipt.gas_usage') }}<br />{{ gasUsage }}%
+              {{ gasUsage.toFixed(2) }}%
             </div>
           </div>
         </div>    
@@ -126,8 +126,8 @@
       }
     },
     watch: {
-      async 'transactions'(transactions) {
-        await this.getGasUsage(transactions);
+      async 'block.transactions'() {
+        await this.getGasUsage();
       }
     },
     async asyncData({req, params, query, redirect, error}) {
@@ -182,9 +182,10 @@
       getLink(page) {
         return {name: 'block-id', params: {id: this.height}, query: {page}}
       },
-      async getGasUsage(transactions) {
+      async getGasUsage() {
 
         const info = await Misc.info();
+        const transactions = await Transaction.getBrief(this.tx)
         const blockGasLimit = info.dgpInfo.blockGasLimit;
         
         let gasUsed = 0;
@@ -212,12 +213,14 @@
       }
       this.transactions = await Transaction.getBrief(this.tx.slice((page - 1) * 20, page * 20))
       this.currentPage = page
+
+      this.getGasUsage()
+
       next()
       scrollIntoView(this.$refs['transaction-list'])
     },
     async mounted() {
-      this.transactions = await Transaction.getBrief(this.tx)
-      this.getGasUsage(this.transactions);
+      this.getGasUsage();
     }
   }
 </script>
@@ -233,8 +236,8 @@
   .semi-donut{
     --percentage: 0;
     --fill: #ff0;
-    width: 150px;
-    height: 75px;
+    width: 75px;
+    height: 37.5px;
     position: relative;
     color: #fff;
     font-size: 14px;
@@ -247,9 +250,9 @@
     box-sizing : border-box;
     &:after{
       content: '';
-      width: 150px;
-      height: 150px;
-      border:25px solid;
+      width: 75px;
+      height: 75px;
+      border: 12.5px solid;
       border-color : rgba(0,0,0,0.15) rgba(0,0,0,0.15) var(--fill) var(--fill);
       position: absolute;
       border-radius: 50%;
