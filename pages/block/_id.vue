@@ -1,5 +1,5 @@
 <template>
-  <section class="container block-section">
+  <section class="container">
     <div class="card section-card">
       <div class="card-header">
         <div class="card-header-icon">
@@ -67,7 +67,7 @@
           <div class="column info-value">{{ tx.length }}</div>
         </div>     
         <div class="columns">
-          <div class="column info-title"><Icon icon="tint" fixedWidth /> {{ $t('transaction.receipt.gas_usage') }}</div>
+          <div class="column info-title"><Icon icon="tint" fixedWidth /> {{ $t('transaction.receipt.gas_consumed') }}</div>
           <div class="column info-value">
             <div class="semi-donut margin" 
                 :style="`--percentage : ${gasUsage}; --fill: #00b712 ;`">
@@ -183,7 +183,6 @@
         return {name: 'block-id', params: {id: this.height}, query: {page}}
       },
       async getGasUsage() {
-
         const info = await Misc.info();
         const transactions = await Transaction.getBrief(this.tx)
         const blockGasLimit = info.dgpInfo.blockGasLimit;
@@ -228,10 +227,6 @@
 <style lang="less" scoped>
   .pagination {
     padding: 1em;
-  }
-
-  .block-section .pagination-link {
-    color: #00b712;
   }
   .semi-donut{
     --percentage: 0;

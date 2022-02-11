@@ -114,6 +114,7 @@
   .pagination-form {
     margin-left: 2em;
     .label {
+      color: #00b712;
       display: inline-block;
       margin-bottom: 0;
       margin-right: 0.5em;
@@ -125,8 +126,22 @@
       display: inline-block;
       width: 3.5em;
       vertical-align: middle;
+      input {
+        color: #00b712;
+      }
       @media (max-width: 768px) {
         width: 3em;
+      }
+    }
+  }
+
+  .pagination-list {
+    .pagination-link {
+      color: #00b712;
+      &.is-current {
+        color: white;
+        background:#00b712;
+        border-color:#00b712;
       }
     }
   }

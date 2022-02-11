@@ -67,7 +67,7 @@ transaction:
     sender: Sender
     contract_address: Contract
     gas_used: Gas
-    gas_usage: Gas usage
+    gas_consumed: Gas consumed
     excepted: Excepted
     event_logs: Event Logs
     address: Address
