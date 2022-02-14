@@ -55,7 +55,10 @@
     background-size: cover;
     background-position-y: bottom;
     color: white;
-    height: 450px;
+    @media screen and (min-width: 1024px) {
+      height: 450px;
+      padding-bottom: 30px; 
+    }
   }
   .background {
     position: relative;

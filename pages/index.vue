@@ -1,37 +1,5 @@
 <template>
   <div class="container">
-    <!-- <section class="columns is-multiline is-desktop">
-      <div class="column">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-header-icon">
-              <Icon icon="tachometer-alt" fixedWidth />
-            </div>
-            <h3 class="card-header-title">
-              {{ $t('misc.network_statistics') }}
-            </h3>
-          </div>
-          <div class="card-body">
-            <p class="information">
-              <span class="key">{{ $t('blockchain.blockchain_height') }}</span>:
-              <span class="value">{{ blockchain.height.toLocaleString() }}</span>
-            </p>
-            <p class="information">
-              <span class="key">{{ $t('blockchain.current_difficulty') }}</span>:
-              <span class="value">{{ difficulty.toLocaleString() }}</span>
-            </p>
-            <p class="information">
-              <span class="key">{{ $t('blockchain.network_weight') }}</span>:
-              <span class="value">{{ stakeWeight | revo(8) }}</span>
-            </p>
-            <p class="information">
-              <span class="key">{{ $t('blockchain.fee_rate') }}</span>:
-              <span class="value">{{ feeRate }} RVO/kB</span>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section> -->
     <section class="columns is-multiline is-desktop">
       <div class="column is-half">
         <div class="card">

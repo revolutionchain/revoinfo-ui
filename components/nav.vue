@@ -1,5 +1,6 @@
 <template>
   <nav class="navbar">
+    
     <div class="navbar-brand is-size-4">
       <a href="https://revo.network" class="navbar-item navbar-logo">
         <span class="revo-icon">
@@ -10,11 +11,12 @@
         <span></span><span></span><span></span>
       </button>
     </div>
+
     <div class="navbar-menu" :class="{'is-active': showMenu}">
       <div class="navbar-start is-uppercase">
         <AttributeInjector class="navbar-item" @click.native="showMenu = !showMenu">
-          <nuxt-link to="/block">{{ $tc('blockchain.block', 2) }}</nuxt-link>
-          <nuxt-link to="/contract/tokens">{{ $tc('blockchain.token') }}</nuxt-link>
+          <nuxt-link to="/block" class="is-desktop">{{ $tc('blockchain.block', 2) }}</nuxt-link>
+          <nuxt-link to="/contract/tokens" class="is-desktop">{{ $tc('blockchain.token') }}</nuxt-link>
           <div class="has-dropdown is-hoverable">
             <nuxt-link to="/misc/charts" class="navbar-link">{{ $t('misc.misc') }}</nuxt-link>
             <div class="navbar-dropdown is-boxed">
@@ -141,6 +143,92 @@
         </div>
       </form>
     </div>
+
+        <div class="columns is-mobile">
+      <div class="column">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-header-title">
+              <Icon icon="fas shield-alt" fixedWidth />
+              {{ $t('blockchain.blockchain_height') }}
+            </h3>
+          </div>
+          <div class="card-body">
+            <p class="information">
+              <BlockLink :block="blockchain.height" :clipboard="false">
+                <span class="value">{{ blockchain.height.toLocaleString() }}</span>
+              </BlockLink>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-header-title">
+              <Icon icon="compass" fixedWidth />
+              {{ $t('blockchain.current_difficulty') }}
+            </h3>
+          </div>
+          <div class="card-body">
+            <p class="information">
+              <span class="value">{{ difficulty.toLocaleString() }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-header-title">
+              <Icon icon="balance-scale" fixedWidth />
+              {{ $t('blockchain.network_weight') }}
+            </h3>
+          </div>
+          <div class="card-body">
+            <p class="information">
+              <span class="value">{{ stakeWeight | revo(8) }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-header-title">
+              <Icon icon="gas-pump" fixedWidth />
+              {{ $t('blockchain.fee_rate') }}
+            </h3>
+          </div>
+          <div class="card-body">
+            <p class="information">
+              <span class="value">{{ feeRate }} RVO/kB</span>
+            </p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="column">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-header-title">
+              <Icon icon="tint" fixedWidth />
+              Min Gas Price
+            </h3>
+          </div>
+          <div class="card-body">
+            <p class="information">
+              <span class="value" v-if="dgpInfo">
+                {{ (dgpInfo.minGasPrice / 100000000).toFixed(8) }} RVO/Unit
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </nav>
 </template>
 
@@ -244,6 +332,15 @@
 </script>
 
 <style lang="less" scoped>
+
+  .columns.is-mobile {
+    display: none;
+    @media screen and (max-width: 1023px) {
+      display: initial;
+      position: relative;
+      bottom: -30px;
+    }
+  }
   .card-header-title {
     padding: 0.75rem 0;
     justify-content: center;
@@ -265,15 +362,24 @@
     }
   }
 
-  @media screen and (min-width: 1300px) {
-    .columns.is-desktop {
+  .columns.is-desktop {
+    @media screen and (max-width: 1023px) {
+      display: none;
+    }
+    @media screen and (min-width: 1300px) {
       padding: 0 20%;
     }
   }
+
   .navbar {
     background-color: transparent;
     .navbar-brand {
       position: absolute;
+      @media screen and (max-width: 1023px) {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+      }
     }
     .navbar-item.has-dropdown:hover .navbar-link {
       background-color: transparent;
@@ -311,6 +417,14 @@
     .navbar-menu {
       padding: 0 10px;
       flex-direction: column;
+      @media screen and (max-width: 1023px) {
+        background: rgba(0,0,0,0.87);
+      }
+      .is-desktop {
+        @media screen and (max-width: 1023px) {
+          visibility: hidden;
+        }
+      }
     }
   }
   .navbar-logo {
@@ -334,6 +448,9 @@
     strong {
       color: white;
     }
+    @media screen and (max-width: 1023px) {
+      display: none;
+    }
   }
 
   p.nebula-p {
@@ -342,12 +459,20 @@
     color: #ffffff;
     font-weight: 200;
     font-size: 17px;
+    @media screen and (max-width: 1023px) {
+      display: none;
+    }
   }
 
   .navbar-start {
     margin-right: 50px;
     margin-top: 10px;
     justify-content: flex-end;
+    .navbar-link {
+      @media screen and (max-width: 1023px) {
+        display: none;
+      }
+    }
   }
   .navbar-end {
     flex: auto;
