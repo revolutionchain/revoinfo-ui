@@ -126,8 +126,8 @@
       }
     },
     watch: {
-      async 'block.transactions'() {
-        await this.getGasUsage();
+      'block.transactions'() {
+        this.getGasUsage();
       }
     },
     async asyncData({req, params, query, redirect, error}) {
@@ -212,8 +212,6 @@
       }
       this.transactions = await Transaction.getBrief(this.tx.slice((page - 1) * 20, page * 20))
       this.currentPage = page
-
-      this.getGasUsage()
 
       next()
       scrollIntoView(this.$refs['transaction-list'])
