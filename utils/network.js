@@ -7,10 +7,10 @@ export default {
     witness_v0_scripthash: 'rv'
   },
   testnet: {
-    pubkey: 0x78,
-    pubkeyhash: 0x78,
-    scripthash: 0x6e,
-    witness_v0_keyhash: 'tq',
-    witness_v0_scripthash: 'tq'
+    pubkey: 0x41,
+    pubkeyhash: 0x41,
+    scripthash: 0x32,
+    witness_v0_keyhash: 'tr',
+    witness_v0_scripthash: 'tr'
   }
 }[process.env.network || 'mainnet']
