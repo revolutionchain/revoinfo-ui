@@ -18,7 +18,7 @@
             <AddressLink :address="address" />
           </td>
           <td>{{ blocks }}</td>
-          <td class="monospace">{{ (blocks / posBlocks * 100).toFixed(4) + '%' }}</td>
+          <td class="monospace">{{ (blocks / allBlocks * 100).toFixed(4) + '%' }}</td>
           <td class="monospace is-hidden-touch">{{ balance | revo(8) }}</td>
         </tr>
       </tbody>
@@ -73,6 +73,9 @@
       },
       posBlocks() {
         return this.blockchain.height - 5000
+      },
+      allBlocks() {
+        return this.blockchain.height
       },
       pages() {
         return Math.ceil(this.totalCount / 100)
