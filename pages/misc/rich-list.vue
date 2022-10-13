@@ -70,20 +70,60 @@
         return this.$store.state.blockchain
       },
       totalSupply() {
+
+        let COIN = 1e8
         let height = this.blockchain.height
-        if (height <= 5000) {
-          return height * 20000
-        }
-        let supply = 1e16
-        let reward = 4e8
-        let interval = 985500
-        height -= 5000
-        let halvings = 0
-        while (halvings < 7 && height > interval) {
-          supply += interval * (reward >>> halvings++)
-          height -= interval
-        }
-        return supply + height * (reward >>> halvings)
+        let blocks = 0
+        let supply = 50 * COIN
+
+        if (height <= 5000)
+            return supply + (height - blocks) * 21000 * COIN
+
+        supply = supply + (5000 - blocks) * 21000 * COIN
+        blocks = 5000
+
+        if (height <= 1000000)
+            return supply + (height - blocks) * 21 * COIN
+
+        supply = supply + (1000000 - blocks) * 21 * COIN
+        blocks = 1000000
+
+        if (height <= 2000000)
+            return supply + (height - blocks) * 13 * COIN
+
+        supply = supply + (2000000 - blocks) * 13 * COIN
+        blocks = 2000000
+
+        if (height <= 4000000)
+            return supply + (height - blocks) * 8 * COIN
+
+        supply = supply + (4000000 - blocks) * 8 * COIN
+        blocks = 4000000
+
+        if (height <= 7000000)
+            return supply + (height - blocks) * 5 * COIN
+
+        supply = supply + (7000000 - blocks) * 5 * COIN
+        blocks = 7000000
+
+        if (height <= 12000000)
+            return supply + (height - blocks) * 3 * COIN
+
+        supply = supply + (12000000 - blocks) * 3 * COIN
+        blocks = 12000000
+
+        if (height <= 20000000)
+            return supply + (height - blocks) * 2 * COIN
+
+        supply = supply + (20000000 - blocks) * 2 * COIN
+        blocks = 20000000
+
+        if (height <= 33000000)
+            return supply + (height - blocks) * 1 * COIN
+
+        supply = supply + (33000000 - blocks) * 1 * COIN
+
+        return supply
       },
       pages() {
         return Math.ceil(this.totalCount / 100)
